@@ -1228,6 +1228,7 @@ jobs:
           name: coverage-unit-${{ matrix.shard }}
           path: ./tests/coverage/
           github-path: ./tests/coverage/jest-results.json
+          github-required: 'false'
           if-no-files-found: error
           retention-days: 7
           runner-provider: ${{ env.RESOLVED_RUNNER_PROVIDER }}
@@ -1529,6 +1530,7 @@ jobs:
           name: coverage-cv-${{ matrix.shard }}
           path: ./tests/coverage/
           github-path: ./tests/coverage/jest-results.json
+          github-required: 'false'
           if-no-files-found: error
           retention-days: 7
           runner-provider: ${{ env.RESOLVED_RUNNER_PROVIDER }}
@@ -1618,6 +1620,7 @@ jobs:
           name: coverage-integration-${{ matrix.shard }}
           path: ./tests/coverage/
           github-path: ./tests/coverage/jest-results.json
+          github-required: 'false'
           if-no-files-found: error
           retention-days: 7
           runner-provider: ${{ env.RESOLVED_RUNNER_PROVIDER }}
