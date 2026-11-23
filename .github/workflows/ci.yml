@@ -1161,6 +1161,7 @@ jobs:
         if: ${{ github.event_name != 'pull_request' }}
         with:
           node-version-file: '.nvmrc'
+          package-manager-cache: false
       - name: Plan test selection
         id: plan
         shell: bash
