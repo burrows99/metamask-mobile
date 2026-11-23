@@ -22,11 +22,10 @@ import {
   useTransactionPayQuotesLastUpdatedMock,
   useTransactionPayQuotesMock,
 } from './custom-amount-info.testUtils';
-import { act } from 'react';
+import React, { act } from 'react';
 import { merge } from 'lodash';
 import renderWithProvider from '../../../../../../util/test/renderWithProvider';
 import {
-  CustomAmountInfo,
   CustomAmountInfoProps,
   AdvancedCustomAmountInfoSkeleton,
   CustomAmountInfoSkeleton,
@@ -785,7 +784,9 @@ describe('CustomAmountInfo', () => {
       ).toBeOnTheScreen();
     });
   });
+});
 
+describe('CustomAmountInfoSkeleton', () => {
   it('renders skeleton without AccountSelectorSkeleton', () => {
     const { getByTestId, queryByTestId } = renderWithProvider(
       <CustomAmountInfoSkeleton />,

@@ -26,11 +26,6 @@ import {
 } from './custom-amount-info.testUtils';
 import { act } from 'react';
 import { noop } from 'lodash';
-import { toast } from '@metamask/design-system-react-native';
-import {
-  CustomAmountInfo,
-  CustomAmountInfoSkeleton,
-} from './custom-amount-info';
 import { Alert, Severity } from '../../../types/alerts';
 import { AlertKeys } from '../../../constants/alerts';
 import { AlertsContextParams } from '../../../context/alert-system-context';
@@ -40,7 +35,6 @@ import { getMoneyAccountDepositIntent } from '../../../../../UI/Money/hooks/useM
 import { fireEvent } from '@testing-library/react-native';
 import { TransactionType } from '@metamask/transaction-controller';
 import { ConfirmationFooterSelectorIDs } from '../../../ConfirmationView.testIds';
-import { useMoneyNoFeeTokens } from '../../../hooks/pay/useMoneyNoFeeTokens';
 import { DepositPrefillStatus } from '../../../hooks/transactions/useDepositPrefillAmount';
 import { MM_PAY_AMOUNT_INPUT_TYPE_MANUAL_SNAPPED_MAX } from '../../../hooks/custom-amount/useSnapAmountToMax';
 
@@ -1139,5 +1133,3 @@ describe('CustomAmountInfo', () => {
     });
   });
 });
-
-describe('CustomAmountInfoSkeleton', () => {});

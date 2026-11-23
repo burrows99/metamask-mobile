@@ -1,7 +1,7 @@
 import {
   IMMERSVE_TEST_ADDRESS,
-  capturedOnValueChange,
   createTestStore,
+  getCapturedOnValueChange,
   mockBeginMigration,
   mockCancelMigration,
   mockCreateFundingSource,
@@ -25,6 +25,7 @@ import {
   setMockIsMoneyAccountCountry,
   setupSignUpMocks,
 } from './SignUp.testUtils';
+import React from 'react';
 import { Keyboard } from 'react-native';
 import { render, fireEvent, act, waitFor } from '@testing-library/react-native';
 import { Provider } from 'react-redux';
@@ -1025,7 +1026,7 @@ describe('SignUp Component', () => {
       );
 
       fireEvent.press(getByTestId('signup-immersve-phone-area-code-select'));
-      capturedOnValueChange?.({
+      getCapturedOnValueChange()?.({
         key: 'DE',
         name: 'Germany',
         emoji: '🇩🇪',

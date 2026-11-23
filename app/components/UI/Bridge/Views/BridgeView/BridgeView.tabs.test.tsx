@@ -6,6 +6,7 @@ import {
   mockState,
   setupBridgeViewMocks,
 } from './BridgeView.testUtils';
+import React from 'react';
 import {
   fireGestureHandler,
   getByGestureTestId,

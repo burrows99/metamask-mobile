@@ -2,13 +2,13 @@ import {
   TestWrapper,
   applyDefaultHookMocks,
   defaultMockHooks,
+  getMockProviderEffectiveAvailableBalance,
   getMockTradeScreenProps,
   mockCanShareCopyTrade,
   mockCreateEventBuilder,
   mockDefaultUsePerpsToasts,
   mockGoBack,
   mockNavigate,
-  mockProviderEffectiveAvailableBalance,
   mockResolvePostTradePrompt,
   mockUseIsPerpsBalanceSelected,
   mockUseTransactionPayToken,
@@ -21,6 +21,7 @@ import {
   setupPerpsOrderViewMocks,
   useTradeSheetRoute,
 } from './PerpsOrderView.testUtils';
+import React from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import {
   act,
@@ -84,7 +85,7 @@ describe('PerpsOrderView', () => {
         expect(screen.getByText('Leverage')).toBeOnTheScreen();
       });
 
-      expect(mockProviderEffectiveAvailableBalance).toBe(250.5);
+      expect(getMockProviderEffectiveAvailableBalance()).toBe(250.5);
     });
 
     it('reports a genuinely empty pay token as zero available balance', async () => {
@@ -102,7 +103,7 @@ describe('PerpsOrderView', () => {
         expect(screen.getByText('Leverage')).toBeOnTheScreen();
       });
 
-      expect(mockProviderEffectiveAvailableBalance).toBe(0);
+      expect(getMockProviderEffectiveAvailableBalance()).toBe(0);
     });
 
     it('defers to the Perps balance while the pay token is still resolving', async () => {
@@ -120,7 +121,7 @@ describe('PerpsOrderView', () => {
         expect(screen.getByText('Leverage')).toBeOnTheScreen();
       });
 
-      expect(mockProviderEffectiveAvailableBalance).toBeUndefined();
+      expect(getMockProviderEffectiveAvailableBalance()).toBeUndefined();
     });
 
     it('defers to the Perps balance when the Perps account is the payment method', async () => {
@@ -138,7 +139,7 @@ describe('PerpsOrderView', () => {
         expect(screen.getByText('Leverage')).toBeOnTheScreen();
       });
 
-      expect(mockProviderEffectiveAvailableBalance).toBeUndefined();
+      expect(getMockProviderEffectiveAvailableBalance()).toBeUndefined();
     });
 
     it('does not warn about insufficient margin when the stale snapshot reads zero but the wallet is funded', async () => {

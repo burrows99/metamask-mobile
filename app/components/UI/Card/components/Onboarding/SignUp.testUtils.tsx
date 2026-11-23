@@ -4,9 +4,6 @@ import useEmailVerificationSend from '../../hooks/useEmailVerificationSend';
 import { useDebouncedValue } from '../../../../hooks/useDebouncedValue';
 import { validateEmail } from '../../../Ramp/utils/depositUtils';
 import { validatePassword } from '../../util/validatePassword';
-import SignUp from './SignUp';
-import Routes from '../../../../../constants/navigation/Routes';
-import { MONEY_HOME_CARD_ORIGIN } from '../../hooks/useCardPostAuthRedirect';
 import { useAnalytics } from '../../../../hooks/useAnalytics/useAnalytics';
 import { AnalyticsEventBuilder } from '../../../../../util/analytics/AnalyticsEventBuilder';
 import { createMockUseAnalyticsHook } from '../../../../../util/test/analyticsMock';
@@ -25,7 +22,7 @@ jest.mock('../../hooks/useCardPostAuthRedirect', () => ({
 jest.mock('../../../../hooks/useAnalytics/useAnalytics');
 
 // Capture setOnValueChange so tests can simulate country picks from the modal.
-export let capturedOnValueChange:
+let capturedOnValueChange:
   | ((region: {
       key: string;
       name: string;
@@ -167,7 +164,7 @@ jest.mock('../../../../hooks/useDebouncedValue', () => ({
   useDebouncedValue: jest.fn(),
 }));
 
-export let mockIsMoneyAccountCountry = false;
+let mockIsMoneyAccountCountry = false;
 export const setMockIsMoneyAccountCountry = (value: boolean) => {
   mockIsMoneyAccountCountry = value;
 };
@@ -305,8 +302,8 @@ jest.mock('../../hooks/useImmersveSiweAuth', () => ({
 }));
 export const IMMERSVE_TEST_ADDRESS =
   '0x1234567890123456789012345678901234567890';
-export let mockAccountGroupName: string | null = 'Account 1';
-export let mockSelectedImmersveAccount: { address: string } | null = {
+let mockAccountGroupName: string | null = 'Account 1';
+let mockSelectedImmersveAccount: { address: string } | null = {
   address: IMMERSVE_TEST_ADDRESS,
 };
 export const setMockImmersveAccount = (
@@ -516,3 +513,5 @@ export function setupSignUpMocks() {
   );
   return { store, mockSendEmailVerification, mockNavigate, mockGoBack };
 }
+
+export const getCapturedOnValueChange = () => capturedOnValueChange;

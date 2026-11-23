@@ -23,6 +23,7 @@ import {
   syncEngineControllerState,
   triggeredOrderTypeIDs,
 } from './PerpsProMarketView.viewTestUtils';
+import React from 'react';
 import '../../../../../../tests/component-view/mocks';
 import {
   act,

@@ -23,7 +23,6 @@ import React, { act } from 'react';
 import { noop } from 'lodash';
 import { toast } from '@metamask/design-system-react-native';
 import Engine from '../../../../../../core/Engine';
-import { CustomAmountInfo } from './custom-amount-info';
 import { useConfirmationContext } from '../../../context/confirmation-context';
 import { strings } from '../../../../../../../locales/i18n';
 import { fireEvent, within } from '@testing-library/react-native';

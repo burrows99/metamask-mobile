@@ -10,6 +10,7 @@ import {
   setupBridgeViewMocks,
   token2Address,
 } from './BridgeView.testUtils';
+import React from 'react';
 import { initialState } from '../../_mocks_/initialState';
 import {
   renderScreen,
@@ -40,7 +41,6 @@ import {
   SWAP_DISCOVERY_FEED_REVAMP_VARIANTS,
   SwapDiscoveryFeedRevampVariant,
 } from '../../components/SwapDiscoveryFeed/abTestConfig';
-import { Button } from '@metamask/design-system-react-native';
 import { FEATURE_FLAG_NAME } from '../../../../../selectors/featureFlagController/rwa';
 
 describe('BridgeView', () => {

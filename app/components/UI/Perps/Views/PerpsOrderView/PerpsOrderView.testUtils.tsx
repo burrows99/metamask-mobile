@@ -1,14 +1,8 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { render, screen } from '@testing-library/react-native';
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
-import { Text } from '@metamask/design-system-react-native';
 import { PaymentOverride } from '@metamask/transaction-pay-controller';
 import { Metrics } from 'react-native-safe-area-context';
-import Engine from '../../../../../core/Engine';
-import { endTrace, TraceName } from '../../../../../util/trace';
 import {
-  useBottomSafeAreaInset,
   usePerpsLiveAccount,
   usePerpsLiquidationPrice,
   usePerpsMarketData,
@@ -36,7 +30,6 @@ import {
 } from '../../providers/PerpsStreamManager';
 import { usePerpsOrderContext } from '../../contexts/PerpsOrderContext';
 import { useAnalytics } from '../../../../../components/hooks/useAnalytics/useAnalytics';
-import PerpsOrderView from './PerpsOrderView';
 import { isHardwareAccount } from '../../../../../util/address';
 import { useTransactionConfirm } from '../../../../Views/confirmations/hooks/transactions/useTransactionConfirm';
 
@@ -135,7 +128,7 @@ jest.mock('../../../../../../locales/i18n', () => ({
 
 // Mock the context. `usePerpsOrderContext` is stubbed, so the balance the view
 // feeds into the order form is only observable on the provider — capture it.
-export let mockProviderEffectiveAvailableBalance: number | undefined;
+let mockProviderEffectiveAvailableBalance: number | undefined;
 jest.mock('../../contexts/PerpsOrderContext', () => {
   const ReactActual = jest.requireActual('react');
   const actual = jest.requireActual('../../contexts/PerpsOrderContext');
@@ -533,7 +526,7 @@ jest.mock(
 
 // Live wallet balance for the selected pay token, independent of the stale
 // `payToken.balanceUsd` controller snapshot.
-export let mockPayTokenAccountBalanceUsd = '0';
+let mockPayTokenAccountBalanceUsd = '0';
 jest.mock(
   '../../../../Views/confirmations/hooks/pay/usePayTokenOrMoneyAccountBalance',
   () => ({
@@ -571,13 +564,13 @@ jest.mock(
 );
 
 // Controllable pay-quote state for the trade-quote-received coverage tests.
-export let mockIsPayQuoteLoading = false;
-export let mockPayTotals: unknown;
-export let mockPayRequiredTokens: {
+let mockIsPayQuoteLoading = false;
+let mockPayTotals: unknown;
+let mockPayRequiredTokens: {
   amountRaw: string;
   skipIfBalance: boolean;
 }[] = [];
-export let mockIsPaySubmitReady = true;
+let mockIsPaySubmitReady = true;
 jest.mock(
   '../../../../Views/confirmations/hooks/pay/useTransactionPayData',
   () => ({
@@ -633,12 +626,12 @@ jest.mock(
   }),
 );
 
-export let mockPerpsAdvancedChartEnabled = false;
-export let mockPaymentOverride: PaymentOverride | undefined;
-export let mockTradeWithAnyTokenEnabled = false;
-export let mockPerpsSizeDenomination: 'usd' | 'asset' = 'usd';
-export let mockSelectedEvmAccount: { address: string } | undefined;
-export let mockIsPerpsProModeActive = false;
+let mockPerpsAdvancedChartEnabled = false;
+let mockPaymentOverride: PaymentOverride | undefined;
+let mockTradeWithAnyTokenEnabled = false;
+let mockPerpsSizeDenomination: 'usd' | 'asset' = 'usd';
+let mockSelectedEvmAccount: { address: string } | undefined;
+let mockIsPerpsProModeActive = false;
 export const mockResolvePostTradePrompt = jest.fn();
 export const mockCanShareCopyTrade = jest.fn(() => true);
 
@@ -799,7 +792,7 @@ jest.mock('../../../../hooks/useTooltipModal', () => ({
 // Value the slider stub drags to. Tests set this before firing the drag
 // testIDs below so the real onValueChange/onDragEnd wiring runs with a
 // controllable value.
-export let mockSliderDragValue = 0;
+let mockSliderDragValue = 0;
 
 // Mock PerpsSlider since it uses reanimated which needs special handling in
 // tests. Exposes drag/drag-end testIDs so tests can exercise the real
@@ -884,7 +877,7 @@ export const createBottomSheetMock = (testId: string) => {
 };
 
 // Leverage the stub confirms with when tests press the confirm testID below.
-export let mockLeverageConfirmValue = 3;
+let mockLeverageConfirmValue = 3;
 
 // Lightweight stub so tests can confirm a leverage through the real
 // onConfirm wiring (clamp/flush logic) without depending on the real
@@ -988,14 +981,14 @@ export interface MockPayWithScreenProps {
   onDismiss: () => void;
 }
 
-export let mockTradeScreenProps: MockTradeScreenProps | undefined;
-export let mockTradeSheetOnClose: (() => void) | undefined;
-export let mockTradeSheetContentSizedScreens: readonly string[] | undefined;
-export let mockLeverageScreenProps: MockLeverageScreenProps | undefined;
-export let mockTPSLScreenProps: MockTPSLScreenProps | undefined;
-export let mockPayWithScreenProps: MockPayWithScreenProps | undefined;
-export let mockMarginInfoScreenProps: MockInfoScreenProps | undefined;
-export let mockLiquidationInfoScreenProps: MockInfoScreenProps | undefined;
+let mockTradeScreenProps: MockTradeScreenProps | undefined;
+let mockTradeSheetOnClose: (() => void) | undefined;
+let mockTradeSheetContentSizedScreens: readonly string[] | undefined;
+let mockLeverageScreenProps: MockLeverageScreenProps | undefined;
+let mockTPSLScreenProps: MockTPSLScreenProps | undefined;
+let mockPayWithScreenProps: MockPayWithScreenProps | undefined;
+let mockMarginInfoScreenProps: MockInfoScreenProps | undefined;
+let mockLiquidationInfoScreenProps: MockInfoScreenProps | undefined;
 
 export const getMockTradeScreenProps = (): MockTradeScreenProps => {
   if (!mockTradeScreenProps) {
@@ -1647,3 +1640,16 @@ export const setMockIsPerpsProModeActive = (
 ) => {
   mockIsPerpsProModeActive = value;
 };
+
+export const getMockProviderEffectiveAvailableBalance = () =>
+  mockProviderEffectiveAvailableBalance;
+
+export const getMockTradeSheetOnClose = () => mockTradeSheetOnClose;
+
+export const getMockTradeSheetContentSizedScreens = () =>
+  mockTradeSheetContentSizedScreens;
+
+export const getMockMarginInfoScreenProps = () => mockMarginInfoScreenProps;
+
+export const getMockLiquidationInfoScreenProps = () =>
+  mockLiquidationInfoScreenProps;

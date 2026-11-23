@@ -2,22 +2,22 @@ import {
   TestWrapper,
   defaultMockHooks,
   getMockLeverageScreenProps,
+  getMockLiquidationInfoScreenProps,
+  getMockMarginInfoScreenProps,
   getMockPayWithScreenProps,
   getMockTPSLScreenProps,
   getMockTradeScreenProps,
+  getMockTradeSheetContentSizedScreens,
+  getMockTradeSheetOnClose,
   mockCreateEventBuilder,
   mockDefaultUsePerpsToasts,
   mockGoBack,
-  mockLiquidationInfoScreenProps,
-  mockMarginInfoScreenProps,
   mockNavigate,
   mockParentGoBack,
   mockPerpsRebateBanner,
   mockRejectBeforeForm,
   mockSetConfirmationMetric,
   mockTrackEvent,
-  mockTradeSheetContentSizedScreens,
-  mockTradeSheetOnClose,
   mockUseIsPerpsBalanceSelected,
   mockUseTransactionPayToken,
   setMockIsPayQuoteLoading,
@@ -27,6 +27,7 @@ import {
   setupPerpsOrderViewMocks,
   useTradeSheetRoute,
 } from './PerpsOrderView.testUtils';
+import React from 'react';
 import { useRoute } from '@react-navigation/native';
 import {
   act,
@@ -205,11 +206,11 @@ describe('PerpsOrderView', () => {
 
     render(<PerpsOrderView />, { wrapper: TestWrapper });
 
-    expect(mockMarginInfoScreenProps?.contentKey).toBe('margin');
-    expect(mockLiquidationInfoScreenProps?.contentKey).toBe(
+    expect(getMockMarginInfoScreenProps()?.contentKey).toBe('margin');
+    expect(getMockLiquidationInfoScreenProps()?.contentKey).toBe(
       'liquidation_price',
     );
-    expect(mockTradeSheetContentSizedScreens).toEqual([
+    expect(getMockTradeSheetContentSizedScreens()).toEqual([
       'leverage',
       'payWith',
       'marginInfo',
@@ -695,7 +696,7 @@ describe('PerpsOrderView', () => {
     useTradeSheetRoute();
     render(<PerpsOrderView />, { wrapper: TestWrapper });
 
-    mockTradeSheetOnClose?.();
+    getMockTradeSheetOnClose()?.();
 
     expect(mockGoBack).toHaveBeenCalledTimes(1);
   });
@@ -704,7 +705,7 @@ describe('PerpsOrderView', () => {
     useTradeSheetRoute({ fromTokenDetails: true });
     render(<PerpsOrderView />, { wrapper: TestWrapper });
 
-    mockTradeSheetOnClose?.();
+    getMockTradeSheetOnClose()?.();
 
     expect(mockParentGoBack).toHaveBeenCalledTimes(1);
     expect(mockGoBack).not.toHaveBeenCalled();
@@ -861,7 +862,7 @@ describe('PerpsOrderView', () => {
     await act(async () => {
       getMockTradeScreenProps().onSubmit();
     });
-    mockTradeSheetOnClose?.();
+    getMockTradeSheetOnClose()?.();
 
     expect(placeOrder).toHaveBeenCalledTimes(1);
     expect(mockGoBack).toHaveBeenCalledTimes(1);
@@ -1017,7 +1018,7 @@ describe('PerpsOrderView', () => {
       const { placeOrder, settleValidation } = arrangePendingValidation();
 
       act(() => {
-        mockTradeSheetOnClose?.();
+        getMockTradeSheetOnClose()?.();
       });
       expect(mockGoBack).toHaveBeenCalledTimes(1);
       await settleValidation();
@@ -1145,7 +1146,7 @@ describe('PerpsOrderView', () => {
         });
       const dismissSheet = () =>
         act(() => {
-          mockTradeSheetOnClose?.();
+          getMockTradeSheetOnClose()?.();
         });
 
       return {

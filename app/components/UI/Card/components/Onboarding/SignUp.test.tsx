@@ -1,6 +1,6 @@
 import {
-  capturedOnValueChange,
   createTestStore,
+  getCapturedOnValueChange,
   mockGetRegionByCode,
   mockSetUserLocation,
   mockSignUpRegions,
@@ -8,6 +8,7 @@ import {
   mockUseCardPostAuthRedirect,
   setupSignUpMocks,
 } from './SignUp.testUtils';
+import React from 'react';
 import { render, fireEvent, act, waitFor } from '@testing-library/react-native';
 import { Provider } from 'react-redux';
 import useEmailVerificationSend from '../../hooks/useEmailVerificationSend';
@@ -108,9 +109,9 @@ describe('SignUp Component', () => {
       mockTrackEvent.mockClear();
 
       fireEvent.press(getByTestId('signup-country-select'));
-      expect(capturedOnValueChange).toBeTruthy();
+      expect(getCapturedOnValueChange()).toBeTruthy();
       await act(async () => {
-        capturedOnValueChange?.({
+        getCapturedOnValueChange()?.({
           key: 'GB',
           name: 'United Kingdom',
           canSignUp: true,

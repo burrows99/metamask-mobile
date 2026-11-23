@@ -1310,12 +1310,24 @@
       "count": 1
     }
   },
+  "app/components/UI/Bridge/Views/BridgeView/BridgeView.quote.test.tsx": {
+    "typescript/no-unnecessary-type-assertion": {
+      "count": 1
+    }
+  },
+  "app/components/UI/Bridge/Views/BridgeView/BridgeView.tabs.test.tsx": {
+    "typescript/promise-function-async": {
+      "count": 1
+    }
+  },
   "app/components/UI/Bridge/Views/BridgeView/BridgeView.test.tsx": {
     "typescript/no-unnecessary-type-assertion": {
-      "count": 2
-    },
+      "count": 1
+    }
+  },
+  "app/components/UI/Bridge/Views/BridgeView/BridgeView.testUtils.tsx": {
     "typescript/promise-function-async": {
-      "count": 2
+      "count": 1
     }
   },
   "app/components/UI/Bridge/Views/BridgeView/BridgeView.view.test.tsx": {
@@ -3124,12 +3136,14 @@
       "count": 2
     }
   },
-  "app/components/UI/Card/components/Onboarding/SignUp.test.tsx": {
-    "typescript/no-unnecessary-type-assertion": {
-      "count": 1
-    },
+  "app/components/UI/Card/components/Onboarding/SignUp.country.test.tsx": {
     "typescript/promise-function-async": {
       "count": 2
+    }
+  },
+  "app/components/UI/Card/components/Onboarding/SignUp.testUtils.tsx": {
+    "typescript/no-unnecessary-type-assertion": {
+      "count": 1
     }
   },
   "app/components/UI/Card/components/Onboarding/SignUp.tsx": {
@@ -6344,21 +6358,45 @@
       "count": 4
     }
   },
-  "app/components/UI/Perps/Views/PerpsOrderView/PerpsOrderView.test.tsx": {
+  "app/components/UI/Perps/Views/PerpsOrderView/PerpsOrderView.payToken.test.tsx": {
     "react-hooks/rules-of-hooks": {
-      "count": 3
+      "count": 1
     },
     "typescript/await-thenable": {
       "count": 4
     },
     "typescript/no-floating-promises": {
-      "count": 14
+      "count": 7
     },
     "typescript/no-unnecessary-type-assertion": {
-      "count": 26
+      "count": 3
+    }
+  },
+  "app/components/UI/Perps/Views/PerpsOrderView/PerpsOrderView.rewards.test.tsx": {
+    "typescript/no-unnecessary-type-assertion": {
+      "count": 18
+    }
+  },
+  "app/components/UI/Perps/Views/PerpsOrderView/PerpsOrderView.test.tsx": {
+    "react-hooks/rules-of-hooks": {
+      "count": 2
+    },
+    "typescript/no-floating-promises": {
+      "count": 7
+    },
+    "typescript/no-unnecessary-type-assertion": {
+      "count": 3
     },
     "typescript/promise-function-async": {
-      "count": 10
+      "count": 8
+    }
+  },
+  "app/components/UI/Perps/Views/PerpsOrderView/PerpsOrderView.testUtils.tsx": {
+    "typescript/no-unnecessary-type-assertion": {
+      "count": 2
+    },
+    "typescript/promise-function-async": {
+      "count": 2
     }
   },
   "app/components/UI/Perps/Views/PerpsOrderView/PerpsOrderView.tsx": {
@@ -6415,6 +6453,16 @@
       "count": 1
     }
   },
+  "app/components/UI/Perps/Views/PerpsProMarketView/PerpsProMarketView.chaseTwap.view.test.tsx": {
+    "typescript/promise-function-async": {
+      "count": 2
+    }
+  },
+  "app/components/UI/Perps/Views/PerpsProMarketView/PerpsProMarketView.orderBook.view.test.tsx": {
+    "typescript/promise-function-async": {
+      "count": 2
+    }
+  },
   "app/components/UI/Perps/Views/PerpsProMarketView/PerpsProMarketView.test.tsx": {
     "typescript/no-floating-promises": {
       "count": 1
@@ -6431,9 +6479,12 @@
       "count": 4
     }
   },
-  "app/components/UI/Perps/Views/PerpsProMarketView/PerpsProMarketView.view.test.tsx": {
+  "app/components/UI/Perps/Views/PerpsProMarketView/PerpsProMarketView.viewTestUtils.tsx": {
     "typescript/promise-function-async": {
-      "count": 11
+      "count": 7
+    },
+    "typescript/unbound-method": {
+      "count": 23
     }
   },
   "app/components/UI/Perps/Views/PerpsProMarketView/components/PerpsProActivityFilterSheet.tsx": {
@@ -19050,23 +19101,44 @@
       "count": 2
     }
   },
+  "app/components/Views/confirmations/components/info/custom-amount-info/custom-amount-info.max.test.tsx": {
+    "react-hooks/rules-of-hooks": {
+      "count": 1
+    },
+    "typescript/no-unnecessary-type-assertion": {
+      "count": 3
+    }
+  },
   "app/components/Views/confirmations/components/info/custom-amount-info/custom-amount-info.styles.test.ts": {
     "typescript/no-unnecessary-type-assertion": {
       "count": 1
     }
   },
-  "app/components/Views/confirmations/components/info/custom-amount-info/custom-amount-info.test.tsx": {
-    "react-hooks/rules-of-hooks": {
-      "count": 1
-    },
+  "app/components/Views/confirmations/components/info/custom-amount-info/custom-amount-info.submit.test.tsx": {
     "typescript/no-unnecessary-type-assertion": {
-      "count": 14
+      "count": 3
+    },
+    "typescript/promise-function-async": {
+      "count": 2
+    }
+  },
+  "app/components/Views/confirmations/components/info/custom-amount-info/custom-amount-info.test.tsx": {
+    "typescript/no-unnecessary-type-assertion": {
+      "count": 6
+    },
+    "typescript/promise-function-async": {
+      "count": 1
+    }
+  },
+  "app/components/Views/confirmations/components/info/custom-amount-info/custom-amount-info.testUtils.tsx": {
+    "typescript/no-unnecessary-type-assertion": {
+      "count": 2
     },
     "typescript/prefer-nullish-coalescing": {
       "count": 2
     },
     "typescript/promise-function-async": {
-      "count": 4
+      "count": 1
     }
   },
   "app/components/Views/confirmations/components/info/custom-amount-info/custom-amount-info.tsx": {

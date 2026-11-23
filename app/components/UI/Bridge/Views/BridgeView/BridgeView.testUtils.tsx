@@ -1,17 +1,11 @@
 import React from 'react';
 import { initialState } from '../../_mocks_/initialState';
 import { DeepPartial } from '../../../../../util/test/renderWithProvider';
-import {
-  setDestToken,
-  setSourceToken,
-} from '../../../../../core/redux/slices/bridge';
 import { Hex } from '@metamask/utils';
 import type { BridgeRouteParams } from '../../hooks/useSwapBridgeNavigation';
 import { mockUseBridgeQuoteData } from '../../_mocks_/useBridgeQuoteData.mock';
-import { useBridgeQuoteData } from '../../hooks/useBridgeQuoteData';
 import { MOCK_ENTROPY_SOURCE as mockEntropySource } from '../../../../../util/test/keyringControllerTestUtils';
 import { RootState } from '../../../../../reducers';
-import Engine from '../../../../../core/Engine';
 import {
   SWAP_DISCOVERY_FEED_REVAMP_VARIANTS,
   SwapDiscoveryFeedRevampVariant,
@@ -84,7 +78,7 @@ jest.mock('../../../../../core/ReactQueryService', () => ({
   default: {
     queryClient: {
       getQueryData: jest.fn(),
-      prefetchQuery: jest.fn(() => Promise.resolve()),
+      prefetchQuery: jest.fn().mockResolvedValue(undefined),
     },
   },
 }));

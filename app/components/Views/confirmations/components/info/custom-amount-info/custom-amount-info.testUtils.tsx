@@ -1,4 +1,5 @@
 import { merge, noop } from 'lodash';
+import React from 'react';
 import { toast } from '@metamask/design-system-react-native';
 import renderWithProvider from '../../../../../../util/test/renderWithProvider';
 import Engine from '../../../../../../core/Engine';
@@ -28,7 +29,6 @@ import {
 } from '../../../hooks/pay/useTransactionPayData';
 import { Hex } from '@metamask/utils';
 import { useRoute } from '@react-navigation/native';
-import { getMoneyAccountDepositIntent } from '../../../../../UI/Money/hooks/useMoneyAccount';
 import { TransactionType } from '@metamask/transaction-controller';
 import { useConfirmActions } from '../../../hooks/useConfirmActions';
 import { useTransactionMetadataRequest } from '../../../hooks/transactions/useTransactionMetadataRequest';
@@ -40,12 +40,8 @@ import { usePayWithMoneyAccountSection } from '../../../hooks/pay/sections/usePa
 import useClearConfirmationOnBackSwipe from '../../../hooks/ui/useClearConfirmationOnBackSwipe';
 import { useAccountNoFundsAlert } from '../../../hooks/alerts/useAccountNoFundsAlert';
 import { useTransactionPayAccountLoading } from '../../../hooks/pay/useTransactionPayAccountLoading';
-import { useAutomaticTransactionPayToken } from '../../../hooks/pay/useAutomaticTransactionPayToken';
 import { DepositPrefillStatus } from '../../../hooks/transactions/useDepositPrefillAmount';
-import { useTransactionPayMetrics } from '../../../hooks/pay/useTransactionPayMetrics';
 import { useTransactionPayPostQuote } from '../../../hooks/pay/useTransactionPayPostQuote';
-import { BalanceProjection } from '../../../../../UI/Money/components/BalanceProjection';
-import useMMPayNavigation from '../../../hooks/ui/useMMPayNavigation';
 import { useSnapAmountToMax } from '../../../hooks/custom-amount/useSnapAmountToMax';
 
 export const MEMBERSHIP_SUBSCRIPTION_TRANSACTION_TYPE =
@@ -416,7 +412,7 @@ export function createDeferredPromise(): DeferredPromise {
 
 // CustomAmountInfo is memoized. Tests update hook mocks then rerender with the
 // same props; a changing non-visual child busts memo without remounting state.
-export let customAmountInfoRenderEpoch = false;
+let customAmountInfoRenderEpoch = false;
 
 export function createCustomAmountInfo(
   props: CustomAmountInfoProps & { transactionType?: TransactionType } = {},

@@ -7,6 +7,7 @@ import {
   mockUseIsGasIncludedSTXSendBundleSupported,
   setupBridgeViewMocks,
 } from './BridgeView.testUtils';
+import React from 'react';
 import { merge } from 'lodash';
 import {
   renderScreen,

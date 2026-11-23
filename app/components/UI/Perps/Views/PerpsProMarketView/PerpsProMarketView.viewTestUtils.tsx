@@ -1,5 +1,6 @@
 import '../../../../../../tests/component-view/mocks';
 import { act, cleanup, fireEvent, screen } from '@testing-library/react-native';
+import React from 'react';
 import {
   AggregatedOrderBookConnection,
   type ChaseOrder,
@@ -95,9 +96,9 @@ export const triggeredOrderTypeIDs = [
   PerpsOrderTypeBottomSheetSelectorsIDs.TAKE_PROFIT_MARKET_OPTION,
 ] as const;
 
-export let connectionReadySpy: jest.SpyInstance;
-export let connectionSubscriptionSpy: jest.SpyInstance;
-export let dateNowSpy: jest.SpyInstance | undefined;
+let connectionReadySpy: jest.SpyInstance;
+let connectionSubscriptionSpy: jest.SpyInstance;
+let dateNowSpy: jest.SpyInstance | undefined;
 export const issuedTwapReadPromises = new Set<Promise<TwapOrder[]>>();
 export const activeTwapSubscriptions = new Set<symbol>();
 export const settledChaseReadPromises = new Set<Promise<ChaseOrder[]>>();
@@ -248,7 +249,7 @@ export const resetPerpsControllerMocks = () => {
 export const engineWithState = Engine as unknown as {
   state?: Record<string, unknown>;
 };
-export let engineStateBeforeTest: Record<string, unknown> | undefined;
+let engineStateBeforeTest: Record<string, unknown> | undefined;
 
 export function registerPerpsProMarketViewHooks() {
   beforeEach(() => {
