@@ -240,11 +240,13 @@ const persistCardTransform = createTransform<
   { whitelist: ['card'] },
 );
 
-// Limit-order settings are session-only. They are also cleared on read because
-// older builds persisted limitOrderCostTolerance.
+// Advanced-order settings are session-only. Limit settings are also cleared on
+// read because older builds persisted limitOrderCostTolerance.
 type PersistedBridgeState = Omit<
   BridgeState,
-  'limitOrderCostTolerance' | 'limitOrderExpirationMinutes'
+  | 'limitOrderCostTolerance'
+  | 'limitOrderExpirationMinutes'
+  | 'recurringPriceTolerance'
 >;
 
 const persistBridgeTransform = createTransform<
@@ -254,12 +256,14 @@ const persistBridgeTransform = createTransform<
   ({
     limitOrderCostTolerance: _omitCostTolerance,
     limitOrderExpirationMinutes: _omitExpirationMinutes,
+    recurringPriceTolerance: _omitRecurringPriceTolerance,
     ...state
   }) => state,
   (state) => ({
     ...state,
     limitOrderCostTolerance: undefined,
     limitOrderExpirationMinutes: undefined,
+    recurringPriceTolerance: undefined,
   }),
   { whitelist: ['bridge'] },
 );
