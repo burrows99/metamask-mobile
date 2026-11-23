@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added a Max button for native TRX sends that asks the Tron Snap for the largest amount that still leaves room for network fees
+
 ### Changed
 
 - Updated the copy on the Add funds from your bank screen to align with the content guidelines

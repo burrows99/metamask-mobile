@@ -6,12 +6,38 @@ import { useSendContext } from '../../context/send-context';
 import { usePercentageAmount } from './usePercentageAmount';
 import { useBalance } from './useBalance';
 import { useParams } from '../../../../../util/navigation/navUtils';
+// eslint-disable-next-line import-x/no-namespace
+import * as TronSnap from '../../../../../core/Multichain/tron';
 
 const NATIVE_ASSET = {
   chainId: '0x1',
   address: '0xeDd1935e28b253C7905Cf5a944f0B5830FFA916a',
   decimals: 2,
   isNative: true,
+};
+
+const TRON_ACCOUNT = {
+  id: 'tron-account-id',
+  address: 'TK3xRFq22eEiATz6kfamDeAAQrPdfdGPeq',
+  metadata: { snap: { id: 'npm:@metamask/tron-wallet-snap' } },
+};
+
+const TRON_ASSET = {
+  assetId: 'tron:728126428/slip44:195',
+  chainId: 'tron:728126428',
+  address: 'TK3xRFq22eEiATz6kfamDeAAQrPdfdGPeq',
+  decimals: 6,
+  isNative: true,
+  symbol: 'TRX',
+};
+
+const TRC20_ASSET = {
+  assetId: 'tron:728126428/trc20:TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t',
+  chainId: 'tron:728126428',
+  address: 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t',
+  decimals: 6,
+  isNative: false,
+  symbol: 'USDT',
 };
 
 jest.mock('@metamask/assets-controllers', () => ({
@@ -28,6 +54,10 @@ jest.mock('./useBalance', () => ({
 
 jest.mock('../../../../../util/navigation/navUtils', () => ({
   useParams: jest.fn(),
+}));
+
+jest.mock('../../../../../core/Multichain/tron', () => ({
+  getTronMaxSendableAmount: jest.fn(),
 }));
 
 const mockState = {
@@ -127,5 +157,82 @@ describe('usePercentageAmount', () => {
     expect(result.current.isMaxAmountSupported).toBe(false);
     expect(result.current.getPercentageAmount(75)).toBe('0.000000000000000007');
     expect(result.current.getPercentageAmount(100)).toBeUndefined();
+  });
+
+  it('supports Max for a native Tron asset and quotes it from the Snap', async () => {
+    const getTronMaxSendableAmountMock = jest
+      .spyOn(TronSnap, 'getTronMaxSendableAmount')
+      .mockResolvedValue({ amount: '9.5' });
+    mockUseSendContext.mockReturnValue({
+      asset: TRON_ASSET,
+      fromAccount: TRON_ACCOUNT,
+    } as unknown as ReturnType<typeof useSendContext>);
+    setBalance('10000000', 6);
+
+    const { result } = renderHookWithProvider(
+      () => usePercentageAmount(),
+      mockState,
+    );
+
+    expect(result.current.isMaxAmountSupported).toBe(true);
+    await expect(result.current.getMaxAmount()).resolves.toBe('9.5');
+    expect(getTronMaxSendableAmountMock).toHaveBeenCalledWith(TRON_ACCOUNT, {
+      accountId: TRON_ACCOUNT.id,
+      assetId: TRON_ASSET.assetId,
+    });
+  });
+
+  it('reserves 1.1 TRX when the Snap cannot quote a native Tron maximum', async () => {
+    jest
+      .spyOn(TronSnap, 'getTronMaxSendableAmount')
+      .mockRejectedValue(new Error('Snap unavailable'));
+    mockUseSendContext.mockReturnValue({
+      asset: TRON_ASSET,
+      fromAccount: TRON_ACCOUNT,
+    } as unknown as ReturnType<typeof useSendContext>);
+    setBalance('10000000', 6);
+
+    const { result } = renderHookWithProvider(
+      () => usePercentageAmount(),
+      mockState,
+    );
+
+    await expect(result.current.getMaxAmount()).resolves.toBe('8.9');
+  });
+
+  it('returns zero when the native Tron balance cannot cover the fallback reserve', async () => {
+    jest
+      .spyOn(TronSnap, 'getTronMaxSendableAmount')
+      .mockRejectedValue(new Error('Snap unavailable'));
+    mockUseSendContext.mockReturnValue({
+      asset: TRON_ASSET,
+      fromAccount: TRON_ACCOUNT,
+    } as unknown as ReturnType<typeof useSendContext>);
+    setBalance('1000000', 6);
+
+    const { result } = renderHookWithProvider(
+      () => usePercentageAmount(),
+      mockState,
+    );
+
+    await expect(result.current.getMaxAmount()).resolves.toBe('0');
+  });
+
+  it('falls back to the token balance when the Snap cannot quote a TRC-20 maximum', async () => {
+    jest
+      .spyOn(TronSnap, 'getTronMaxSendableAmount')
+      .mockRejectedValue(new Error('Snap unavailable'));
+    mockUseSendContext.mockReturnValue({
+      asset: TRC20_ASSET,
+      fromAccount: TRON_ACCOUNT,
+    } as unknown as ReturnType<typeof useSendContext>);
+    setBalance('10000000', 6);
+
+    const { result } = renderHookWithProvider(
+      () => usePercentageAmount(),
+      mockState,
+    );
+
+    await expect(result.current.getMaxAmount()).resolves.toBe('10');
   });
 });

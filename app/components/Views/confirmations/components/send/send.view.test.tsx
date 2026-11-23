@@ -430,6 +430,9 @@ describeForPlatforms('Send', () => {
       fireEvent.press(
         getByTestId(RedesignedSendViewSelectorsIDs.PERCENTAGE_BUTTON_100),
       );
+      await waitFor(() =>
+        expect(getByRole('button', { name: 'Continue' })).toBeOnTheScreen(),
+      );
       fireEvent.press(getByRole('button', { name: 'Continue' }));
 
       const addressInput = await findByTestId(
@@ -472,6 +475,9 @@ describeForPlatforms('Send', () => {
 
       fireEvent.press(
         getByTestId(RedesignedSendViewSelectorsIDs.PERCENTAGE_BUTTON_100),
+      );
+      await waitFor(() =>
+        expect(getByRole('button', { name: 'Continue' })).toBeOnTheScreen(),
       );
       fireEvent.press(getByRole('button', { name: 'Continue' }));
 
@@ -673,6 +679,9 @@ describeForPlatforms('Send', () => {
       ).toBeOnTheScreen();
 
       fireEvent.press(getByRole('button', { name: 'Max' }));
+      await waitFor(() =>
+        expect(getByRole('button', { name: 'Continue' })).toBeOnTheScreen(),
+      );
       fireEvent.press(getByRole('button', { name: 'Continue' }));
 
       expect(
@@ -959,6 +968,9 @@ describeForPlatforms('Send', () => {
 
       fireEvent.press(
         getByTestId(RedesignedSendViewSelectorsIDs.PERCENTAGE_BUTTON_100),
+      );
+      await waitFor(() =>
+        expect(getByRole('button', { name: 'Continue' })).toBeOnTheScreen(),
       );
       fireEvent.press(getByRole('button', { name: 'Continue' }));
 
