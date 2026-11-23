@@ -1112,6 +1112,76 @@ jobs:
       id-token: write
     uses: ./.github/workflows/deploy-platform-api-docs.yml
 
+  test-plan:
+    name: Plan test selection
+    permissions:
+      contents: read
+    runs-on: >-
+      ${{
+        (inputs.runner_provider != '' && inputs.runner_provider != 'inherit' && inputs.runner_provider || vars.NAMESPACE_RUNNER_LINUX || vars.NAMESPACE_RUNNER_PROVIDER || 'current') == 'namespace' &&
+        'namespace-profile-metamask-ci-linux-small' || 'ubuntu-latest'
+      }}
+    env:
+      # Effective provider for this job. Steps must test this, never inputs.runner_provider
+      # directly, or a provider set through the repo variables would be ignored.
+      RESOLVED_RUNNER_PROVIDER: >-
+        ${{
+          (inputs.runner_provider != '' && inputs.runner_provider != 'inherit' && inputs.runner_provider || vars.NAMESPACE_RUNNER_LINUX || vars.NAMESPACE_RUNNER_PROVIDER || 'current')
+        }}
+    if: ${{ !cancelled() && needs.get_requirements.result == 'success' && needs.get_requirements.outputs.skip_everything != 'true' }}
+    needs:
+      - get_requirements
+    outputs:
+      reason: ${{ steps.plan.outputs.reason }}
+      thresholds_enforced: ${{ steps.plan.outputs.thresholds_enforced }}
+      unit_mode: ${{ steps.plan.outputs.unit_mode }}
+      unit_count: ${{ steps.plan.outputs.unit_count }}
+      unit_shard_count: ${{ steps.plan.outputs.unit_shard_count }}
+      unit_shards: ${{ steps.plan.outputs.unit_shards }}
+      unit_patterns: ${{ steps.plan.outputs.unit_patterns }}
+      cv_mode: ${{ steps.plan.outputs.cv_mode }}
+      cv_count: ${{ steps.plan.outputs.cv_count }}
+      cv_shard_count: ${{ steps.plan.outputs.cv_shard_count }}
+      cv_shards: ${{ steps.plan.outputs.cv_shards }}
+      cv_patterns: ${{ steps.plan.outputs.cv_patterns }}
+    steps:
+      - uses: namespacelabs/nscloud-checkout-action@938f5d2d403d6224d9a0c0dc559b1dae09c2ede4 # v8.1.1
+        if: ${{ env.RESOLVED_RUNNER_PROVIDER == 'namespace' }}
+        with:
+          fetch-depth: 200
+      - uses: actions/checkout@v6
+        if: ${{ env.RESOLVED_RUNNER_PROVIDER != 'namespace' }}
+        with:
+          fetch-depth: 200
+      - uses: ./.github/actions/setup-ci-js-deps
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          runner_provider: ${{ env.RESOLVED_RUNNER_PROVIDER }}
+      - uses: actions/setup-node@v6
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          node-version-file: '.nvmrc'
+      - name: Plan test selection
+        id: plan
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          plan_file="${RUNNER_TEMP}/test-plan.json"
+          node scripts/jest/selective-test-plan.mjs \
+            --event "$EVENT_NAME" \
+            --base "$BASE_SHA" \
+            --out "$plan_file" > /dev/null
+          {
+            echo "### Test plan"
+            echo
+            jq -r '.reason' "$plan_file"
+            echo
+            jq -r '.projects | to_entries[] | "- \(.key): \(.value.mode) (\(.value.reason))"' "$plan_file"
+          } >> "$GITHUB_STEP_SUMMARY"
+
   unit-tests:
     name: Unit tests (${{ matrix.shard }})
     permissions:
@@ -1128,13 +1198,16 @@ jobs:
         ${{
           (inputs.runner_provider != '' && inputs.runner_provider != 'inherit' && inputs.runner_provider || vars.NAMESPACE_RUNNER_LINUX || vars.NAMESPACE_RUNNER_PROVIDER || 'current')
         }}
-    if: ${{ !cancelled() && needs.get_requirements.result == 'success' && needs.get_requirements.outputs.skip_everything != 'true' }}
+    if: ${{ !cancelled() && needs.get_requirements.result == 'success' && needs.get_requirements.outputs.skip_everything != 'true' && needs.test-plan.result == 'success' }}
     needs:
       - get_requirements
+      - test-plan
     strategy:
       fail-fast: ${{ github.event_name == 'merge_group' }}
       matrix:
-        shard: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        # Shard indexes come from test-plan: 1..10 for the full suite, fewer when a
+        # pull request selects only a few suites.
+        shard: ${{ fromJSON(needs.test-plan.outputs.unit_shards || '[1,2,3,4,5,6,7,8,9,10]') }}
     steps:
       - uses: namespacelabs/nscloud-checkout-action@938f5d2d403d6224d9a0c0dc559b1dae09c2ede4 # v8.1.1
         if: ${{ env.RESOLVED_RUNNER_PROVIDER == 'namespace' }}
@@ -1147,13 +1220,38 @@ jobs:
           jest_cache_key_suffix: ${{ matrix.shard == 1 && 'scan' || '' }}
       - name: Prepare results directory
         run: mkdir -p tests/results
-      # The "10" in this command is the total number of shards. It must be kept
-      # in sync with the length of matrix.shard
       # Namespace Linux: --maxWorkers=33% (~3 workers on 8 vCPU) + 12GiB heap.
-      - run: yarn test:unit --shard=${{ matrix.shard }}/10${{ env.RESOLVED_RUNNER_PROVIDER == 'namespace' && ' --maxWorkers=33%' || '' }} --workerIdleMemoryLimit=2GB --forceExit --silent --coverageReporters=json --json --outputFile=tests/results/unit-test-results-${{ matrix.shard }}.json
+      # Full runs keep the test:unit roots. Selective runs pass the suites chosen by
+      # test-plan explicitly, because test:unit's roots would otherwise be OR-ed in.
+      - name: Run unit tests
+        shell: bash
         env:
           NODE_OPTIONS: --max_old_space_size=12288
-          JEST_SKIP_UNTESTED_COVERAGE: ${{ matrix.shard != 1 && 'true' || 'false' }}
+          SHARD: ${{ matrix.shard }}
+          SHARD_COUNT: ${{ needs.test-plan.outputs.unit_shard_count || '10' }}
+          UNIT_MODE: ${{ needs.test-plan.outputs.unit_mode || 'full' }}
+          UNIT_PATTERNS: ${{ needs.test-plan.outputs.unit_patterns || '[]' }}
+          MAX_WORKERS_FLAG: ${{ env.RESOLVED_RUNNER_PROVIDER == 'namespace' && '--maxWorkers=33%' || '' }}
+          # Only one shard pays for the repo-wide coverage scan on full runs. Selective
+          # runs never scan the repo, so their coverage covers what they load.
+          JEST_SKIP_UNTESTED_COVERAGE: ${{ (needs.test-plan.outputs.unit_mode == 'selective' || matrix.shard != 1) && 'true' || 'false' }}
+        run: |
+          set -euo pipefail
+          results="tests/results/unit-test-results-${SHARD}.json"
+          if [[ "$UNIT_MODE" == "full" ]]; then
+            yarn test:unit --shard="${SHARD}/${SHARD_COUNT}" ${MAX_WORKERS_FLAG} --workerIdleMemoryLimit=2GB --forceExit --silent --coverageReporters=json --json --outputFile="$results"
+            exit 0
+          fi
+
+          mapfile -t PATTERNS < <(jq -r '.[]' <<<"$UNIT_PATTERNS")
+          if (( ${#PATTERNS[@]} == 0 )); then
+            echo "No unit suites selected for this shard; recording an empty result."
+            mkdir -p tests/coverage
+            echo '{}' > tests/coverage/coverage-final.json
+            echo '{"numTotalTests":0,"numPassedTests":0,"numFailedTests":0,"testResults":[]}' > "$results"
+            exit 0
+          fi
+          yarn jest --shard="${SHARD}/${SHARD_COUNT}" ${MAX_WORKERS_FLAG} --workerIdleMemoryLimit=2GB --forceExit --silent --coverageReporters=json --json --passWithNoTests --outputFile="$results" "${PATTERNS[@]}"
       - name: Rename coverage report and extract test count for this shard
         shell: bash
         run: |
@@ -1200,6 +1298,7 @@ jobs:
           (inputs.runner_provider != '' && inputs.runner_provider != 'inherit' && inputs.runner_provider || vars.NAMESPACE_RUNNER_LINUX || vars.NAMESPACE_RUNNER_PROVIDER || 'current')
         }}
     needs:
+      - test-plan
       - unit-tests
       - component-view-tests
       - integration-tests
@@ -1270,7 +1369,11 @@ jobs:
 
           find ./tests/coverage/coverage-* -name 'coverage-*.json' -exec mv {} ./tests/coverage/ \;
       - run: yarn test:merge-coverage
-      - run: yarn test:validate-coverage
+      # Thresholds describe the full suite. A selective pull request merges only the
+      # suites it ran, so it is checked by SonarCloud's new-code coverage gate instead.
+      - name: Validate coverage thresholds
+        if: ${{ needs.test-plan.outputs.thresholds_enforced == 'true' }}
+        run: yarn test:validate-coverage
       - name: Upload lcov.info (artifact stores)
         uses: ./.github/actions/dual-upload-e2e-artifact
         with:
@@ -1463,15 +1566,16 @@ jobs:
         ${{
           (inputs.runner_provider != '' && inputs.runner_provider != 'inherit' && inputs.runner_provider || vars.NAMESPACE_RUNNER_LINUX || vars.NAMESPACE_RUNNER_PROVIDER || 'current')
         }}
-    if: ${{ !cancelled() && needs.get_requirements.result == 'success' && needs.get_requirements.outputs.skip_everything != 'true' }}
+    if: ${{ !cancelled() && needs.get_requirements.result == 'success' && needs.get_requirements.outputs.skip_everything != 'true' && needs.test-plan.result == 'success' }}
     needs:
       - get_requirements
+      - test-plan
     strategy:
       fail-fast: ${{ github.event_name == 'merge_group' }}
       matrix:
         # Peak memory is bounded by workerIdleMemoryLimit in jest.config.view.js.
-        # The shard list length must match the denominator in --shard below.
-        shard: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        # Shard indexes come from test-plan; the denominator is the same plan output.
+        shard: ${{ fromJSON(needs.test-plan.outputs.cv_shards || '[1,2,3,4,5,6,7,8,9,10]') }}
     steps:
       - uses: namespacelabs/nscloud-checkout-action@938f5d2d403d6224d9a0c0dc559b1dae09c2ede4 # v8.1.1
         if: ${{ env.RESOLVED_RUNNER_PROVIDER == 'namespace' }}
@@ -1483,13 +1587,32 @@ jobs:
           jest_cache_name: cv
       - name: Prepare results directory
         run: mkdir -p tests/results
-      - run: |
-          yarn test:view:ci \
-            --shard=${{ matrix.shard }}/10 \
-            --json \
-            --outputFile=tests/results/cv-test-results-${{ matrix.shard }}.json
+      - name: Run component view tests
+        shell: bash
         env:
           NODE_OPTIONS: ${{ env.RESOLVED_RUNNER_PROVIDER == 'namespace' && '--max-old-space-size=12288' || '--max-old-space-size=20480' }}
+          TEST_OS: ios
+          SHARD: ${{ matrix.shard }}
+          SHARD_COUNT: ${{ needs.test-plan.outputs.cv_shard_count || '10' }}
+          CV_MODE: ${{ needs.test-plan.outputs.cv_mode || 'full' }}
+          CV_PATTERNS: ${{ needs.test-plan.outputs.cv_patterns || '[]' }}
+        run: |
+          set -euo pipefail
+          results="tests/results/cv-test-results-${SHARD}.json"
+          if [[ "$CV_MODE" == "full" ]]; then
+            yarn test:view:ci --shard="${SHARD}/${SHARD_COUNT}" --json --outputFile="$results"
+            exit 0
+          fi
+
+          mapfile -t PATTERNS < <(jq -r '.[]' <<<"$CV_PATTERNS")
+          if (( ${#PATTERNS[@]} == 0 )); then
+            echo "No component view suites selected for this shard; recording an empty result."
+            mkdir -p tests/coverage
+            echo '{}' > tests/coverage/coverage-final.json
+            echo '{"numTotalTests":0,"numPassedTests":0,"numFailedTests":0,"testResults":[]}' > "$results"
+            exit 0
+          fi
+          yarn jest -c jest.config.view.js --no-watchman --silent --coverage --forceExit --coverageReporters=json --shard="${SHARD}/${SHARD_COUNT}" --passWithNoTests --json --outputFile="$results" "${PATTERNS[@]}"
       - name: Rename coverage report and extract test count for this shard
         shell: bash
         run: |
@@ -2192,6 +2315,7 @@ jobs:
         }}
     needs:
       - get_requirements
+      - test-plan
       - check-diff
       - dedupe
       - scripts
