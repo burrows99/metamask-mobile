@@ -1205,6 +1205,8 @@ jobs:
       - uses: ./.github/actions/setup-ci-js-deps
         with:
           runner_provider: ${{ env.RESOLVED_RUNNER_PROVIDER }}
+          jest_cache_name: unit
+          jest_cache_key_suffix: ${{ matrix.shard == 1 && 'scan' || '' }}
       - name: Prepare results directory
         run: mkdir -p tests/results
       # The "10" in this command is the total number of shards. It must be kept
@@ -1213,6 +1215,7 @@ jobs:
       - run: yarn test:unit --shard=${{ matrix.shard }}/10${{ env.RESOLVED_RUNNER_PROVIDER == 'namespace' && ' --maxWorkers=33%' || '' }} --workerIdleMemoryLimit=2GB --forceExit --silent --coverageReporters=json --json --outputFile=tests/results/unit-test-results-${{ matrix.shard }}.json
         env:
           NODE_OPTIONS: --max_old_space_size=12288
+          JEST_SKIP_UNTESTED_COVERAGE: ${{ matrix.shard != 1 && 'true' || 'false' }}
       - name: Rename coverage report and extract test count for this shard
         shell: bash
         run: |
@@ -1507,6 +1510,7 @@ jobs:
       - uses: ./.github/actions/setup-ci-js-deps
         with:
           runner_provider: ${{ env.RESOLVED_RUNNER_PROVIDER }}
+          jest_cache_name: cv
       - name: Prepare results directory
         run: mkdir -p tests/results
       - run: |
@@ -1596,6 +1600,7 @@ jobs:
       - uses: ./.github/actions/setup-ci-js-deps
         with:
           runner_provider: ${{ env.RESOLVED_RUNNER_PROVIDER }}
+          jest_cache_name: integration
       - name: Prepare results directory
         run: mkdir -p tests/results
       - run: |

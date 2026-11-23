@@ -11,6 +11,18 @@ inputs:
     description: 'Runner provider (`namespace` or any GitHub-hosted value).'
     required: false
     default: 'current'
+  jest_cache_name:
+    description: >
+      Optional Jest cache namespace (`unit`, `cv`, `integration`). When set,
+      persists an isolated JEST_CACHE_DIRECTORY outside the repository tree.
+    required: false
+    default: ''
+  jest_cache_key_suffix:
+    description: >
+      Optional cache key suffix for non-Namespace runners (e.g. `scan` for
+      full-coverage unit shard 1).
+    required: false
+    default: ''
 
 runs:
   using: 'composite'
@@ -21,6 +33,9 @@ runs:
       with:
         path: |
           ~/.cache/yarn
+          ~/.cache/jest-unit
+          ~/.cache/jest-cv
+          ~/.cache/jest-integration
           .metamask
           node_modules
           .yarn/cache
@@ -64,3 +79,33 @@ runs:
       if: ${{ steps.check-deps.outputs.needs-install == 'true' }}
       shell: bash
       run: yarn setup:github-ci --node
+
+    - name: Restore Jest cache (non-Namespace)
+      if: ${{ inputs.runner_provider != 'namespace' && inputs.jest_cache_name != '' }}
+      uses: actions/cache@v6
+      # zizmor: ignore[cache-poisoning] At stake if this cache is poisoned: read-only test job with
+      # contents: read and no secrets; each Jest config uses an isolated cache directory.
+      with:
+        path: ~/.cache/jest-${{ inputs.jest_cache_name }}
+        key: ${{ runner.os }}-jest-${{ inputs.jest_cache_name }}${{ inputs.jest_cache_key_suffix != '' && format('-{0}', inputs.jest_cache_key_suffix) || '' }}-${{ hashFiles('yarn.lock', 'jest.config*.js', 'babel.config*.js', '.yarnrc.yml') }}
+        restore-keys: |
+          ${{ runner.os }}-jest-${{ inputs.jest_cache_name }}${{ inputs.jest_cache_key_suffix != '' && format('-{0}', inputs.jest_cache_key_suffix) || '' }}-
+          ${{ runner.os }}-jest-${{ inputs.jest_cache_name }}-
+
+    - name: Configure Jest cache directory
+      if: ${{ inputs.jest_cache_name != '' }}
+      shell: bash
+      env:
+        JEST_CACHE_NAME: ${{ inputs.jest_cache_name }}
+      run: | # zizmor: ignore[github-env] value is validated against a fixed allowlist and runner-set $HOME
+        set -euo pipefail
+        case "$JEST_CACHE_NAME" in
+          unit|cv|integration) ;;
+          *)
+            echo "::error::Unsupported jest_cache_name: $JEST_CACHE_NAME"
+            exit 1
+            ;;
+        esac
+        JEST_CACHE_DIR="$HOME/.cache/jest-$JEST_CACHE_NAME"
+        mkdir -p "$JEST_CACHE_DIR"
+        echo "JEST_CACHE_DIRECTORY=$JEST_CACHE_DIR" >> "$GITHUB_ENV"

@@ -33,6 +33,11 @@ process.env.MM_CARD_BAANX_API_CLIENT_KEY = 'test-api-key';
 // When running Reassure perf tests we want to avoid Jest coverage to reduce memory usage
 const isReassureRun = process.env.REASSURE === 'true';
 
+// In sharded CI unit runs, only shard 1 needs to scan untested `app/**` files
+// for baseline coverage; other shards collect coverage for executed `app/**`
+// modules without repeating the repo-wide AST scan.
+const skipUntestedCoverage = process.env.JEST_SKIP_UNTESTED_COVERAGE === 'true';
+
 const DEPENDENCIES_TO_TRANSPILE = [
   '@react-native',
   'react-native',
@@ -223,15 +228,17 @@ const config = {
   },
   // Disable coverage collection for Reassure runs to avoid OOM
   collectCoverage: !isReassureRun && process.env.NODE_ENV !== 'production',
-  collectCoverageFrom: !isReassureRun
-    ? [
-        '<rootDir>/app/**/*.{js,ts,tsx,jsx}',
-        '!<rootDir>/app/**/*.stories.tsx',
-        '!<rootDir>/app/**/*.test.{js,ts,tsx,jsx}',
-        '!<rootDir>/app/**/*.spec.{js,ts,tsx,jsx}',
-      ]
-    : undefined,
+  collectCoverageFrom:
+    !isReassureRun && !skipUntestedCoverage
+      ? [
+          '<rootDir>/app/**/*.{js,ts,tsx,jsx}',
+          '!<rootDir>/app/**/*.stories.tsx',
+          '!<rootDir>/app/**/*.test.{js,ts,tsx,jsx}',
+          '!<rootDir>/app/**/*.spec.{js,ts,tsx,jsx}',
+        ]
+      : undefined,
   coveragePathIgnorePatterns: [
+    '/node_modules/',
     '__mocks__/',
     '<rootDir>/app/util/test/',
     '<rootDir>/app/util/testUtils/',
@@ -239,6 +246,9 @@ const config = {
     '<rootDir>/app/features/SampleFeature/e2e/',
     '<rootDir>/app/components/UI/MarketInsights/components/MarketInsightsEntryCard/MarketInsightsEntryCardOriginal.tsx',
     '<rootDir>/app/components/UI/MarketInsights/components/MarketInsightsEntryCard/AnimatedGradientBorder.tsx',
+    ...(skipUntestedCoverage
+      ? ['\\.stories\\.tsx$', '<rootDir>/(?!app/)']
+      : []),
   ],
   testPathIgnorePatterns: [
     '.*/tests/(smoke|regression|performance)/.*\\.spec\\.(ts|tsx|js)$',
