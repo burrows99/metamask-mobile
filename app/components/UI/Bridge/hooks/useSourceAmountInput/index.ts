@@ -5,10 +5,15 @@ import {
   getRequestParams,
   getSwapType,
   InputPrimaryDenomination,
+  MoneyAccountAction,
   UnifiedSwapBridgeEventName,
 } from '@metamask/bridge-controller';
 import { useSelector } from 'react-redux';
-import { selectCurrentCurrency } from '../../../../../selectors/currencyRateController';
+import {
+  selectCurrencyRates,
+  selectCurrentCurrency,
+} from '../../../../../selectors/currencyRateController';
+import { getUsdToFiatConversionRate } from '../../../Money/utils/moneyActivityFiat';
 import Engine from '../../../../../core/Engine';
 import {
   selectBridgeControllerState,
@@ -35,6 +40,7 @@ import { strings } from '../../../../../../locales/i18n';
 
 const TOKEN_AMOUNT_DENOMINATION: InputPrimaryDenomination = 'token_amount';
 const FIAT_VALUE_DENOMINATION: InputPrimaryDenomination = 'fiat_value';
+const USD_CURRENCY = 'usd';
 
 const getFiatToggleEventProperties = ({
   previousPrimaryDenomination,
@@ -99,8 +105,17 @@ export const useSourceAmountInput = ({
   const destToken = useSelector(selectDestToken);
   const isMaxSourceAmount = useSelector(selectIsMaxSourceAmount);
   const currentCurrency = useSelector(selectCurrentCurrency);
+  const usdToFiatRate = getUsdToFiatConversionRate(
+    useSelector(selectCurrencyRates),
+  );
   const polledFiatRate = useTokenFiatRate(sourceToken);
-  const fiatRate = tokenFiatRate ?? polledFiatRate;
+  // mUSD is USD-pegged, so its fiat rate is the user's USD conversion.
+  const moneyFiatRate = sourceToken?.isMoneyToken
+    ? undefined
+    : currentCurrency.toLowerCase() === USD_CURRENCY
+      ? 1
+      : usdToFiatRate;
+  const fiatRate = moneyFiatRate ?? tokenFiatRate ?? polledFiatRate;
   const inputPrimaryDenomination =
     bridgeControllerState?.inputPrimaryDenomination ??
     TOKEN_AMOUNT_DENOMINATION;
@@ -156,6 +171,21 @@ export const useSourceAmountInput = ({
     },
     [activeInputPrimaryDenomination, destToken, sourceToken, featureId],
   );
+
+  useEffect(() => {
+    if (
+      !sourceToken?.isMoneyToken ||
+      activeInputPrimaryDenomination === FIAT_VALUE_DENOMINATION
+    ) {
+      return;
+    }
+
+    setInputPrimaryDenomination(FIAT_VALUE_DENOMINATION);
+  }, [
+    activeInputPrimaryDenomination,
+    sourceToken?.isMoneyToken,
+    setInputPrimaryDenomination,
+  ]);
 
   const handleAmountChange = useCallback(
     (value: string | undefined) => {

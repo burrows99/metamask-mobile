@@ -617,7 +617,7 @@ const BridgeMarketViewContent = ({
                   !destChainId ||
                   !destToken ||
                   !sourceToken ||
-                  !isDestNetworkEnabled
+                  (!destToken.isMoneyToken && !isDestNetworkEnabled)
                 }
               />
               <Box style={styles.tokenCard}>
@@ -659,6 +659,8 @@ const BridgeMarketViewContent = ({
                     // oxlint-disable-next-line typescript/prefer-nullish-coalescing
                     destToken?.isMoneyToken || sourceToken?.isMoneyToken
                   }
+                  // inputPrefix={destInputPrefix}
+                  // hideFiatValueWhenUnpriced
                 />
               </Box>
             </Box>

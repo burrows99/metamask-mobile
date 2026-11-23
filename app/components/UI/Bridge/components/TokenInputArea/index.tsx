@@ -251,6 +251,9 @@ export const TokenInputArea = forwardRef<
   ) => {
     const featureId = useSwapsFeatureId();
     const currentCurrency = useSelector(selectCurrentCurrency);
+    const isMoneyToken = Boolean(token?.isMoneyToken);
+    const isDestMoneyToken =
+      isMoneyToken && tokenType === TokenInputAreaType.Destination;
 
     // Need to fetch the exchange rate for the token if we don't have it already
     useBridgeExchangeRates({
@@ -374,8 +377,16 @@ export const TokenInputArea = forwardRef<
       [token],
     );
 
-    const subtitle =
-      tokenType === TokenInputAreaType.Source
+    const destMoneyApyLabel =
+      token?.apy !== undefined
+        ? strings('money.asset_overview.balance_cta.earn_apy', {
+            apy: token.apy,
+          })
+        : undefined;
+
+    const subtitle = isDestMoneyToken
+      ? destMoneyApyLabel
+      : tokenType === TokenInputAreaType.Source
         ? formattedBalance
         : formattedAddress;
 
