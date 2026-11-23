@@ -68,7 +68,10 @@ runs:
             cp "$install_state_dir/termsOfUse.html" docs/assets/termsOfUse.html
             echo "needs-install=false" >> "$GITHUB_OUTPUT"
           else
-            rm -rf "$install_state_dir"
+            # The state dir is a Namespace cache mount point, so clear its contents
+            # instead of removing the directory itself.
+            mkdir -p "$install_state_dir"
+            find "$install_state_dir" -mindepth 1 -delete
             echo "needs-install=true" >> "$GITHUB_OUTPUT"
           fi
         elif [ -d node_modules ] && [ -f app/util/termsOfUse/termsOfUseContent.ts ]; then
