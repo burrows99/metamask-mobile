@@ -1,9 +1,7 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Box } from '@metamask/design-system-react-native';
 import { strings } from '../../../../../../locales/i18n';
 import { useStyles } from '../../../../../component-library/hooks';
-import { selectCurrentCurrency } from '../../../../../selectors/currencyRateController';
 import { getNetworkImageSource } from '../../../../../util/networks';
 import {
   TokenInputArea,
@@ -14,9 +12,6 @@ import { FLipQuoteButton } from '../FlipQuoteButton';
 import type { useSourceAmountInput } from '../../hooks/useSourceAmountInput';
 import type { BridgeToken } from '../../types';
 import { useBridgeSession } from '../../hooks/useBridgeSession';
-import { useTokenFiatRate } from '../../hooks/useTokenFiatRate';
-import { getMoneyInputPrefix } from '../../utils/currencyUtils';
-import { hasMissingTokenFiatRate } from '../../utils/hasMissingTokenFiatRate';
 import { createStyles } from './SwapsInputs.styles';
 
 interface SwapsInputsProps {
@@ -62,18 +57,6 @@ export const SwapsInputs = ({
 }: SwapsInputsProps) => {
   const { styles } = useStyles(createStyles);
   const { latestSourceBalance } = useBridgeSession();
-  const currentCurrency = useSelector(selectCurrentCurrency);
-  const destFiatRate = useTokenFiatRate(destToken);
-  const destAmount = hideDestAmount ? undefined : destTokenAmount;
-  const destInputPrefix = getMoneyInputPrefix({
-    isMoneyToken: Boolean(destToken?.isMoneyToken),
-    showFiatAmountAsPrimary: hideDestAmount
-      ? false
-      : Boolean(destToken?.isMoneyToken || sourceAmountInput.isFiatMode),
-    hideFiatValue: hasMissingTokenFiatRate(destToken, destFiatRate),
-    amount: destAmount,
-    currency: currentCurrency,
-  });
 
   return (
     <Box style={styles.inputsContainer}>
@@ -100,11 +83,7 @@ export const SwapsInputs = ({
             onMaxPress={onSourceMaxPress}
             isSourceToken
             inputPrefix={sourceAmountInput.inputPrefix}
-            secondaryValue={
-              sourceToken?.isMoneyToken
-                ? strings('money.usd_name')
-                : sourceAmountInput.secondaryValue
-            }
+            secondaryValue={sourceAmountInput.secondaryValue}
             balanceCheckAmount={sourceAmountInput.balanceCheckAmount}
             onAmountTypeTogglePress={
               sourceAmountInput.canToggle
@@ -113,9 +92,6 @@ export const SwapsInputs = ({
             }
             amountTypeToggleTestID={sourceAmountTypeToggleTestID}
             hideFiatValueWhenUnpriced
-            showFiatAmountAsPrimary={
-              sourceToken?.isMoneyToken ? true : undefined
-            }
           />
         </Box>
         <FLipQuoteButton onPress={onFlipPress} disabled={isFlipDisabled} />
@@ -126,7 +102,7 @@ export const SwapsInputs = ({
           ]}
         >
           <TokenInputArea
-            amount={destAmount}
+            amount={hideDestAmount ? undefined : destTokenAmount}
             token={destToken}
             networkImageSource={
               destToken
@@ -140,11 +116,8 @@ export const SwapsInputs = ({
             isLoading={
               hideDestAmount ? false : !destTokenAmount && isDestAmountLoading
             }
-            inputPrefix={destInputPrefix}
             showFiatAmountAsPrimary={
-              hideDestAmount
-                ? false
-                : destToken?.isMoneyToken || sourceAmountInput.isFiatMode
+              hideDestAmount ? false : sourceAmountInput.isFiatMode
             }
             hideAmount={hideDestAmount}
             amountReplacementLabel={
@@ -152,9 +125,6 @@ export const SwapsInputs = ({
             }
             amountReplacementLabelTestID={destAmountReplacementLabelTestID}
             hideFiatValueWhenUnpriced
-            secondaryValue={
-              destToken?.isMoneyToken ? strings('money.usd_name') : undefined
-            }
           />
         </Box>
       </Box>
