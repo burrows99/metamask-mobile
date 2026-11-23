@@ -186,7 +186,7 @@ const LegacyWatchlistSection = forwardRef<
   const showFallback =
     isEmpty && !isSuggestedLoading && suggestedTokens.length === 0;
 
-  const renderSectionContent = () => {
+  const renderSectionContent = (): React.ReactNode => {
     if (isLoading) {
       return Array.from({ length: MAX_ITEMS_DISPLAYED }, (_, i) => (
         <TrendingTokensSkeleton key={`watchlist-skeleton-${i}`} />
@@ -268,9 +268,8 @@ const MixedWatchlistSection = forwardRef<
     tokenMembershipAssetIds,
     tokenCount,
     perpsCount,
-    orderError,
     isOrderReady,
-    persistOrder,
+    appendOrderKey,
     isInitialLoading,
     refresh,
   } = useUnifiedWatchlist();
@@ -307,7 +306,7 @@ const MixedWatchlistSection = forwardRef<
       tokens.items,
     ],
   );
-  const hasError = Boolean(tokens.error || perps.error || orderError);
+  const hasError = Boolean(tokens.error || perps.error);
   const isEmpty = !isInitialLoading && displayItems.length === 0 && !hasError;
   const showSuggestedSkeletons =
     isEmpty && isSuggestedLoading && suggestedRows.length === 0;
@@ -336,24 +335,12 @@ const MixedWatchlistSection = forwardRef<
           );
           if (isOrderReady) {
             const addedKey = getTokenWatchlistKey(assetId);
-            persistOrder([
-              ...items
-                .filter((item) => item.key !== addedKey)
-                .map((item) => item.key),
-              addedKey,
-            ]).catch(() => undefined);
+            appendOrderKey(addedKey).catch(() => undefined);
           }
         },
       });
     },
-    [
-      addMutation,
-      createEventBuilder,
-      isOrderReady,
-      items,
-      persistOrder,
-      trackEvent,
-    ],
+    [addMutation, appendOrderKey, createEventBuilder, isOrderReady, trackEvent],
   );
 
   const handleAddPerpPress = useCallback(
@@ -363,14 +350,9 @@ const MixedWatchlistSection = forwardRef<
         return;
       }
       const addedKey = getPerpsWatchlistKey(market.symbol);
-      await persistOrder([
-        ...items
-          .filter((item) => item.key !== addedKey)
-          .map((item) => item.key),
-        addedKey,
-      ]).catch(() => undefined);
+      await appendOrderKey(addedKey).catch(() => undefined);
     },
-    [addPerpToWatchlist, isOrderReady, items, persistOrder],
+    [addPerpToWatchlist, appendOrderKey, isOrderReady],
   );
 
   useImperativeHandle(ref, () => ({ refresh }), [refresh]);
@@ -393,7 +375,7 @@ const MixedWatchlistSection = forwardRef<
     enabled: true,
   });
 
-  const renderSectionContent = () => {
+  const renderSectionContent = (): React.ReactNode => {
     if (isInitialLoading && displayItems.length === 0) {
       return Array.from({ length: MAX_ITEMS_DISPLAYED }, (_, index) => (
         <TrendingTokensSkeleton key={`watchlist-skeleton-${index}`} />
@@ -422,9 +404,6 @@ const MixedWatchlistSection = forwardRef<
 
     return (
       <>
-        {hasError ? (
-          <WatchlistErrorRow onRetry={canRefresh ? refresh : undefined} />
-        ) : null}
         {displayItems.map((item, index) => {
           if (item.kind === 'token') {
             return (

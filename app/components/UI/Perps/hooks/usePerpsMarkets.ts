@@ -220,6 +220,7 @@ export const usePerpsMarkets = (
           // Empty array
           setMarkets([]);
           setIsLoading(false);
+          setError(null);
           if (isFirstUpdate) {
             DevLogger.log('Perps: No market data available', {
               timeToDataMs: timeToData,
@@ -237,7 +238,7 @@ export const usePerpsMarkets = (
       throttleMs: 0, // No throttle for market data updates
     });
 
-    return () => {
+    return (): void => {
       isActive = false;
       unsubscribe();
     };
@@ -261,7 +262,7 @@ export const usePerpsMarkets = (
       }
     }, pollingInterval);
 
-    return () => clearInterval(intervalId);
+    return (): void => clearInterval(intervalId);
   }, [enablePolling, pollingInterval, streamManager.marketData]);
 
   return {

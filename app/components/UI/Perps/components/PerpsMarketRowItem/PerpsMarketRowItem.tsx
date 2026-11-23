@@ -41,7 +41,7 @@ const PerpsMarketRowItem = ({
   enableLivePrices = true,
   onAddPress,
   twClassName,
-}: PerpsMarketRowItemProps) => {
+}: PerpsMarketRowItemProps): React.JSX.Element => {
   // Subscribe to live prices for just this symbol
   const livePrices = usePerpsLivePrices({
     symbols: enableLivePrices ? [market.symbol] : [],
@@ -112,7 +112,7 @@ const PerpsMarketRowItem = ({
     return updatedMarket;
   }, [enableLivePrices, market, livePrices]);
 
-  const handlePress = () => {
+  const handlePress = (): void => {
     onPress?.(displayMarket);
   };
 
@@ -194,6 +194,10 @@ const PerpsMarketRowItem = ({
         <PerpsLeverage maxLeverage={displayMarket.maxLeverage} />
       }
       description={description}
+      descriptionProps={{
+        numberOfLines: 1,
+        ellipsizeMode: 'tail',
+      }}
       descriptionEndAccessory={
         showBadge && badgeType ? (
           <PerpsBadge
