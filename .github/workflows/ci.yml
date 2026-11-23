@@ -1206,7 +1206,7 @@ jobs:
         with:
           runner_provider: ${{ env.RESOLVED_RUNNER_PROVIDER }}
           jest_cache_name: unit
-          jest_cache_key_suffix: ${{ matrix.shard == 1 && 'scan' || '' }}
+          jest_cache_key_suffix: shard-${{ matrix.shard }}
       - name: Prepare results directory
         run: mkdir -p tests/results
       # The "10" in this command is the total number of shards. It must be kept
@@ -1511,6 +1511,7 @@ jobs:
         with:
           runner_provider: ${{ env.RESOLVED_RUNNER_PROVIDER }}
           jest_cache_name: cv
+          jest_cache_key_suffix: shard-${{ matrix.shard }}
       - name: Prepare results directory
         run: mkdir -p tests/results
       - run: |
@@ -1601,6 +1602,7 @@ jobs:
         with:
           runner_provider: ${{ env.RESOLVED_RUNNER_PROVIDER }}
           jest_cache_name: integration
+          jest_cache_key_suffix: shard-${{ matrix.shard }}
       - name: Prepare results directory
         run: mkdir -p tests/results
       - run: |

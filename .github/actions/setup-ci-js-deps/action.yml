@@ -14,13 +14,16 @@ inputs:
   jest_cache_name:
     description: >
       Optional Jest cache namespace (`unit`, `cv`, `integration`). When set,
-      persists an isolated JEST_CACHE_DIRECTORY outside the repository tree.
+      persists an isolated JEST_CACHE_DIRECTORY outside the repository tree via
+      actions/cache on every runner provider. It is deliberately not part of the
+      Namespace cache volume: concurrent jobs sharing that volume did not retain
+      the Jest directories across runs.
     required: false
     default: ''
   jest_cache_key_suffix:
     description: >
-      Optional cache key suffix for non-Namespace runners (e.g. `scan` for
-      full-coverage unit shard 1).
+      Optional cache key suffix, typically the matrix shard (e.g. `shard-3`), so
+      each shard saves the transform cache for the files it actually runs.
     required: false
     default: ''
 
@@ -33,9 +36,6 @@ runs:
       with:
         path: |
           ~/.cache/yarn
-          ~/.cache/jest-unit
-          ~/.cache/jest-cv
-          ~/.cache/jest-integration
           .metamask
           node_modules
           .yarn/cache
@@ -80,15 +80,16 @@ runs:
       shell: bash
       run: yarn setup:github-ci --node
 
-    - name: Restore Jest cache (non-Namespace)
-      if: ${{ inputs.runner_provider != 'namespace' && inputs.jest_cache_name != '' }}
+    - name: Restore Jest cache
+      if: ${{ inputs.jest_cache_name != '' }}
       uses: actions/cache@v6
       # zizmor: ignore[cache-poisoning] At stake if this cache is poisoned: read-only test job with
       # contents: read and no secrets; each Jest config uses an isolated cache directory.
       with:
         path: ~/.cache/jest-${{ inputs.jest_cache_name }}
-        key: ${{ runner.os }}-jest-${{ inputs.jest_cache_name }}${{ inputs.jest_cache_key_suffix != '' && format('-{0}', inputs.jest_cache_key_suffix) || '' }}-${{ hashFiles('yarn.lock', 'jest.config*.js', 'babel.config*.js', '.yarnrc.yml') }}
+        key: ${{ runner.os }}-jest-${{ inputs.jest_cache_name }}${{ inputs.jest_cache_key_suffix != '' && format('-{0}', inputs.jest_cache_key_suffix) || '' }}-${{ hashFiles('yarn.lock', 'jest.config*.js', 'babel.config*.js', '.yarnrc.yml') }}-${{ github.sha }}
         restore-keys: |
+          ${{ runner.os }}-jest-${{ inputs.jest_cache_name }}${{ inputs.jest_cache_key_suffix != '' && format('-{0}', inputs.jest_cache_key_suffix) || '' }}-${{ hashFiles('yarn.lock', 'jest.config*.js', 'babel.config*.js', '.yarnrc.yml') }}-
           ${{ runner.os }}-jest-${{ inputs.jest_cache_name }}${{ inputs.jest_cache_key_suffix != '' && format('-{0}', inputs.jest_cache_key_suffix) || '' }}-
           ${{ runner.os }}-jest-${{ inputs.jest_cache_name }}-
 
