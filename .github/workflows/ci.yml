@@ -1239,8 +1239,12 @@ jobs:
         run: |
           set -euo pipefail
           results="tests/results/unit-test-results-${SHARD}.json"
+          max_workers_args=()
+          if [[ -n "$MAX_WORKERS_FLAG" ]]; then
+            max_workers_args=("$MAX_WORKERS_FLAG")
+          fi
           if [[ "$UNIT_MODE" == "full" ]]; then
-            yarn test:unit --shard="${SHARD}/${SHARD_COUNT}" ${MAX_WORKERS_FLAG} --workerIdleMemoryLimit=2GB --forceExit --silent --coverageReporters=json --json --outputFile="$results"
+            yarn test:unit --shard="${SHARD}/${SHARD_COUNT}" "${max_workers_args[@]}" --workerIdleMemoryLimit=2GB --forceExit --silent --coverageReporters=json --json --outputFile="$results"
             exit 0
           fi
 
@@ -1252,7 +1256,7 @@ jobs:
             echo '{"numTotalTests":0,"numPassedTests":0,"numFailedTests":0,"testResults":[]}' > "$results"
             exit 0
           fi
-          yarn jest --shard="${SHARD}/${SHARD_COUNT}" ${MAX_WORKERS_FLAG} --workerIdleMemoryLimit=2GB --forceExit --silent --coverageReporters=json --json --passWithNoTests --outputFile="$results" "${PATTERNS[@]}"
+          yarn jest --shard="${SHARD}/${SHARD_COUNT}" "${max_workers_args[@]}" --workerIdleMemoryLimit=2GB --forceExit --silent --coverageReporters=json --json --passWithNoTests --outputFile="$results" "${PATTERNS[@]}"
       - name: Rename coverage report and extract test count for this shard
         shell: bash
         run: |

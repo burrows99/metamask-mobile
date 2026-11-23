@@ -212,14 +212,10 @@ export function computePlan(input) {
       .sort();
   }
 
-  const projects = {};
-  for (const project of ['unit', 'cv']) {
-    projects[project] = planProject({
-      project,
-      input,
-      referencingSources,
-    });
-  }
+  const projects = {
+    unit: planProject({ project: 'unit', input, referencingSources }),
+    cv: planProject({ project: 'cv', input, referencingSources }),
+  };
 
   return {
     eventName,
