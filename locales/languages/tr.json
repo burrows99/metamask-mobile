@@ -1556,7 +1556,7 @@
       "private_description": "Gizli profiller paylaşım yayınlayamaz. Paylaşım yapmaya başlamadan önce profilinizi herkese açık hale getirin."
     },
     "post_trade_share": {
-      "swap_in_progress": "Takas işlemi sürüyor",
+      "trade_in_progress": "Trade in progress",
       "complete": "Takas tamamlandı",
       "failed": "Takas başarısız oldu",
       "order_in_progress": "Emir devam ediyor",
@@ -3960,11 +3960,45 @@
       "politics": "Siyaset",
       "sports": "Spor"
     },
+    "feed_screens": {
+      "titles": {
+        "sports-football-nfl": "Sports",
+        "sports-football-ncaa": "Sports",
+        "sports": "Sports",
+        "politics": "Politics"
+      },
+      "subtitles": {
+        "sports-football-nfl": "NFL",
+        "sports-football-ncaa": "NCAAF"
+      },
+      "tabs": {
+        "sports-football-nfl": {
+          "games": "Games",
+          "props": "Props"
+        },
+        "sports-football-ncaa": {
+          "games": "Games",
+          "props": "Props"
+        },
+        "sports": {
+          "nfl": "NFL",
+          "ncaaf": "NCAAF"
+        },
+        "politics": {
+          "trump": "Trump",
+          "congress": "Congress",
+          "iran": "Iran"
+        }
+      }
+    },
     "home_feed": {
       "trending": "Trend",
       "sports": "Spor",
       "games_error": "Oyunlar yüklenemedi.",
-      "retry": "Tekrar Dene"
+      "retry": "Tekrar Dene",
+      "preview_error": "Markets couldn’t be loaded.",
+      "preview_empty": "No markets available.",
+      "open_section": "View {{title}}"
     },
     "get_started_banner": {
       "title": "Birkaç adımda başlayın",
@@ -4151,6 +4185,51 @@
     "order_notification": {
       "not_placed_title": "Emir verilmedi",
       "not_placed_description": "Bakiyenizden hiçbir tutar çekilmedi. Tekrar denemek için yeni bir fiyat teklifi alın."
+    },
+    "deposit": {
+      "title": "Add Prediction funds",
+      "amount": "Deposit amount",
+      "pay_with": "Pay with",
+      "token_on_network": "{{token}} on {{network}}",
+      "available": "{{amount}} USDC available",
+      "balance_unavailable": "USDC balance unavailable",
+      "minimum": "Minimum $1",
+      "not_enough_usdc": "Not enough USDC on {{network}}",
+      "continue": "Continue",
+      "add_funds": "Add funds",
+      "plan_mismatch": "This deposit couldn't be verified, so nothing was sent. Try again.",
+      "rejected": "Transfer cancelled. No funds were moved.",
+      "failed": "Something went wrong. Your account wasn't funded.",
+      "transfer_mismatch": "The transfer doesn't match this deposit. Contact support.",
+      "processing_title": "Adding funds",
+      "processing_description": "{{amount}} will be available in about a minute.",
+      "done": "Done",
+      "in_progress": {
+        "title": "Deposit in progress",
+        "awaiting_transfer": "Your deposit of {{amount}} is waiting for its transfer.",
+        "processing": "Your deposit of {{amount}} is on its way. It'll be available in a moment.",
+        "under_review": "Your deposit of {{amount}} is under review. Support reference: {{reference}}",
+        "under_review_label": "Your deposit of {{amount}} is under review. Support reference:",
+        "unknown": "A deposit is already in progress. Try again in a moment.",
+        "continue": "Continue",
+        "cancel": "Cancel deposit",
+        "close": "Got it",
+        "cancel_failed": "This deposit couldn't be cancelled. Try again."
+      },
+      "status": {
+        "awaiting_transfer": "Deposit waiting for your transfer",
+        "processing": "Deposit processing",
+        "under_review": "Deposit under review · Ref {{reference}}",
+        "under_review_label": "Deposit under review · Ref",
+        "copy_reference": "Copy support reference",
+        "reference_copied": "Support reference copied",
+        "failed": "Deposit failed",
+        "cancelled": "Deposit cancelled"
+      },
+      "notification": {
+        "completed_title": "Deposit complete",
+        "completed_description": "{{amount}} is ready to trade."
+      }
     },
     "withdraw": {
       "title": "Çek",
@@ -5379,6 +5458,12 @@
     "fully_diluted": "Tamamen seyreltilmiş",
     "unknown": "Bilinmeyen",
     "stock": "Hisse senedi"
+  },
+  "collectibles": {
+    "title": "Collectibles",
+    "trade_menu": {
+      "description": "Explore packs and cards"
+    }
   },
   "collectible": {
     "collectible_address": "Adres",
@@ -9881,7 +9966,6 @@
     "apy_premium_tag": "Premium",
     "apy_upgrading_pill": "Upgrading to Premium APY",
     "apy_downgrading_pill": "Moving to standard APY",
-    "apy_info_label": "Yıllık Yüzde Getiri (APY) bilgisi",
     "balance_unavailable": "Bakiye kullanılamıyor",
     "balance_unavailable_value": "$—",
     "balance_unavailable_banner_description": "Bakiyenizi geçici olarak görüntüleyemiyoruz. Fonlarınız güvende—kısa bir süre sonra tekrar deneyin.",
@@ -9906,6 +9990,7 @@
           "title": "MetaMask Card'ınızı bağlayın",
           "description": "Bakiyenizi Mastercard kabul edilen her yerde kazanırken harcamaya devam edin.",
           "cta_primary": "Kartı bağla",
+          "cta_log_in": "Log in",
           "cta_secondary": "Atla"
         }
       }
@@ -9917,15 +10002,15 @@
       "body_suffix": "tutara kadar kazanç sağlayan bir stabil kripto para hesabıdır.",
       "body_no_apy": "MetaMask Money, işlem, gönderim ve harcama özelliklerini bünyesinde bulunduran bir stabil kripto para hesabıdır.",
       "benefit_convert_title": "1:1 oranda olmak üzere MetaMask USD'ye dönüştürür",
-      "benefit_convert_body": "Eklediğiniz fonlar hiçbir ücret kesilmeden 1:1 oranda olmak üzere MetaMask USD'ye dönüşür.",
+      "benefit_convert_body": "Funds you add convert 1:1 to MetaMask USD, a dollar-backed stablecoin.",
       "benefit_earn_title": "Otomatik kazanın",
       "benefit_earn_body": "Kazançlar talep etmenize gerek kalmadan gerçek zamanlı olarak bakiyenize yansır.",
       "benefit_trade_title": "Aynı bakiyeden işlem yapın",
       "benefit_trade_body": "Takas, perps ve tahmin işlemlerini doğrudan Money bakiyenizden finanse edin.",
-      "benefit_withdraw_title": "Dilediğiniz zaman çekin",
-      "benefit_withdraw_body": "Kilitleme, ihbar süresi veya para cezası yok. Paranız her zaman çekilmeye hazırdır.",
+      "benefit_withdraw_title": "No lockups",
+      "benefit_withdraw_body": "There are no notice periods or penalties to swap or send your funds.",
       "benefit_send_title": "Dilediğiniz yere gönderin veya dilediğiniz yerde harcayın",
-      "benefit_send_body": "Dilediğiniz cüzdana veya bankaya gönderin veya MetaMask Card ile harcama yapın.",
+      "benefit_send_body": "Send to any wallet or bank, or spend globally with MetaMask Card.",
       "cta": "Kazanmaya başla",
       "close": "Kapat"
     },
@@ -9986,6 +10071,7 @@
     },
     "action": {
       "add": "Ekle",
+      "move": "Move",
       "card": "Kart",
       "details": "Ayrıntılar"
     },
@@ -10052,6 +10138,8 @@
       "virtual_card": "Sanal kart",
       "metal_card": "Metal kart",
       "link_title": "Kartı bağla",
+      "sign_in_cta": "Log in",
+      "sign_in_prompt": "Log in to view your balance, card, and transaction details.",
       "link_subtitle": "Bakiyenizi Mastercard kabul edilen her yerde kazanırken harcamaya devam edin.",
       "link_subtitle_no_apy": "Bakiyenizi Mastercard kabul edilen her yerde kazanırken harcamaya devam edin.",
       "link_bullet_apy": "Maksimum kazanç ~ %{{apy}} APY",
@@ -10107,6 +10195,8 @@
       "contact_support": "Destek ile iletişime geç"
     },
     "transfer_sheet": {
+      "move_title": "Move funds",
+      "withdraw_to_accounts": "Withdraw to accounts",
       "perps_account": "Perps hesabı",
       "predictions_account": "Tahminler hesabı",
       "send_external": "Harici adres",
@@ -10171,15 +10261,32 @@
       "send_destination_predict": "Tahmin"
     },
     "apy_tooltip": {
-      "title": "Yıllık Yüzde Getiri (APY)",
+      "subtitle": "Annual Percentage Yield",
+      "lead": "This is the rate your MetaMask Money balance is earning right now.",
       "paragraph_1": "Money account hesabınız otomatik olarak %{{percentage}} orana kadar kazanır.",
       "paragraph_1_premium": "Your Money account earns up to {{percentage}}% with MetaMask Pro Premium APY.",
       "migration_upgrading": "Your funds are moving to the Premium vault. The APY shown is for the vault your funds are in right now.",
       "migration_downgrading": "Your funds are moving to the standard vault. The APY shown is for the vault your funds are in right now.",
-      "paragraph_2": "Gösterilen oran, mevcut piyasa koşullarına dayalı tahmini Yıllık Yüzde Getiri (APY) oranıdır. APY değişkendir ve garanti edilmez. Fonlar, Veda tarafından yönetilen ve Steakhouse Financial tarafından risk denetimi yapılan, yerleşik kredi piyasalarında getiri sağlayan bir DeFi kasasına yatırılır.",
+      "how_it_works_title": "How it works",
+      "how_it_works_body": "Earnings are added to your balance in real time and compound, so your earnings earn too.",
+      "why_it_changes_title": "Why it changes",
+      "why_it_changes_body": "APY is variable and isn't guaranteed. It moves up and down with borrowing demand.",
+      "where_it_comes_from_title": "Where it comes from",
+      "where_it_comes_from_body": "Your funds go into a DeFi vault that lends across established markets. Veda manages the vault, and Steakhouse Financial oversees its risk.",
       "paragraph_3": "MetaMask Card'ınızı bağladığınızda satın alma işlemleri bu bakiyeden düşer.",
-      "paragraph_4": "Money account, Monad tarafından desteklenmektedir.",
-      "deposit_body": "Gösterilen oran, mevcut piyasa koşullarına dayalı tahmini Yıllık Yüzde Getiridir (APY). APY değişken olup garanti edilmemektedir."
+      "paragraph_4": "Money account, Monad tarafından desteklenmektedir."
+    },
+    "estimated_balance_sheet": {
+      "title": "Your {{depositAmount}} could grow to {{projectedAmount}}",
+      "subtitle_prefix": "Estimated balance after one year in MetaMask Money at ",
+      "subtitle_apy": "{{percentage}}% APY",
+      "subtitle_suffix": ".",
+      "subtitle_no_apy": "Estimated balance after one year in MetaMask Money.",
+      "bullet_compound_title": "Earnings compound automatically",
+      "bullet_compound_body": "Earnings are added to your balance in real time, so they start earning too.",
+      "bullet_no_lockups_title": "No lockups",
+      "bullet_no_lockups_body": "There are no notice periods or penalties to swap or send your funds.",
+      "disclaimer": "This estimate assumes {{percentage}}% APY for a full year. APY is variable and isn't guaranteed."
     },
     "earnings_tooltip": {
       "monthly": {
@@ -10193,7 +10300,6 @@
     },
     "earn_crypto_info_sheet": {
       "title": "Kriptonuzdan kazanç sağlayın",
-      "deposit_title": "Öngörülen 1 yıllık bakiye",
       "body": "Tahmin, %{{percentage}} Yıllık Yüzde Getirinin (APY) bir yıl boyunca değişmeden kalacağı varsayımına dayanır. APY değişkendir ve garanti edilmez. Getiri garantisi yoktur.",
       "go_to_money_account": "Money account hesabına git"
     },
@@ -10835,7 +10941,7 @@
       "buy_button": "Kripto satın alın",
       "buy_predict": "Tahminleri kullanmak için cüzdanınıza fon ekleyin.",
       "buy_perps": "Perps kullanmak için cüzdanınıza fon ekleyin.",
-      "projected_balance": "Öngörülen {{projectedYears}} yıllık bakiye:",
+      "projected_balance": "Est. {{projectedYears}}-year balance:",
       "earn_up_to_apy": "%{{percentage}} APY kazan"
     },
     "unlimited": "Sınırsız",
@@ -10913,6 +11019,7 @@
       "try_again": "Tekrar dene",
       "today": "Bugün"
     },
+    "money_name": "MetaMask USD",
     "limit": {
       "pair": "{{source}} → {{dest}}",
       "expiry": "Expires after: {{timeLeft}}",
@@ -11106,6 +11213,7 @@
       "failed": "Başarısız oldu",
       "filled": "Gerçekleşti",
       "skipped": "Atlandı",
+      "swap_issue_warning": "Some swaps were skipped or failed",
       "reason": "Sebebi",
       "swap_details_title": "{{source}} - {{dest}} swap işlemi gerçekleştirildi",
       "order_not_found": "Emir bulunamadı",
@@ -11170,6 +11278,7 @@
     "slippage": "Kayma",
     "slippage_info": "Emrinizin verildiği zaman ile onaylandığı zaman arasında fiyat değişirse buna “kayma” denir. Kayma burada belirlediğiniz toleransı aşarsa swap işleminiz otomatik olarak iptal edilir.",
     "network_fee": "Ağ ücreti",
+    "stablecoin_account": "Stablecoin account",
     "relayer_fee": "Relayer ücreti",
     "gas_fees_sponsored": "MetaMask tarafından ödenir",
     "included": "Dahil",
@@ -11218,6 +11327,7 @@
     "no_fees_with_orange": "No fees with Orange",
     "fee_disclaimer": "%{{feePercentage}} MetaMask ücreti dahildir",
     "discount_badge_promo": "Promo",
+    "discount_badge_free": "Free",
     "discount_badge_dao": "DAO",
     "no_mm_fee": "MM ücreti yok",
     "token_suspicious": "Şüpheli",
@@ -12952,6 +13062,9 @@
       "title_claim": "Faydayı Al",
       "action": "Al",
       "empty-list": "Şu anda faydanız yok.",
+      "error_title": "Unable to load benefits",
+      "error_description": "We couldn't load your benefits. Try again.",
+      "retry_button": "Retry",
       "powered_by": "Destekleyen",
       "available_count": "{{count}} kullanılabilir"
     },
@@ -12984,6 +13097,9 @@
       "entered": "Giriş yapıldı",
       "participant_count": "#{{count}}",
       "opt_in_cta": "Katıl",
+      "opt_in_section_title": "Discover campaigns and benefits",
+      "opt_in_section_description": "Win prizes, claim perks, and discover more ways to earn!",
+      "opt_in_section_legal": "Turning this on will opt-in all accounts on your devices to Rewards campaigns and Benefits powered by theMiracle.",
       "create_username": "Create a username",
       "opt_in_sheet_title": "Kampanyaya katıl",
       "geo_restriction_banner_title": "Bölgenizde kullanılamıyor",
@@ -13865,6 +13981,7 @@
       "money_account": "Money account",
       "renews_on": "Yenilenme tarihi",
       "ends_on": "Ends on",
+      "ended_on": "Ended on",
       "months_on_us_one": "{{count}} ay bizden",
       "months_on_us_other": "{{count}} ay bizden",
       "manage": "Planı yönet",

@@ -1556,7 +1556,7 @@
       "private_description": "비공개 프로필은 게시물을 올릴 수 없습니다. 게시하려면 프로필을 공개로 전환하세요."
     },
     "post_trade_share": {
-      "swap_in_progress": "스왑 진행 중",
+      "trade_in_progress": "Trade in progress",
       "complete": "스왑 완료",
       "failed": "스왑 실패",
       "order_in_progress": "주문 진행 중",
@@ -3960,11 +3960,45 @@
       "politics": "정치",
       "sports": "스포츠"
     },
+    "feed_screens": {
+      "titles": {
+        "sports-football-nfl": "Sports",
+        "sports-football-ncaa": "Sports",
+        "sports": "Sports",
+        "politics": "Politics"
+      },
+      "subtitles": {
+        "sports-football-nfl": "NFL",
+        "sports-football-ncaa": "NCAAF"
+      },
+      "tabs": {
+        "sports-football-nfl": {
+          "games": "Games",
+          "props": "Props"
+        },
+        "sports-football-ncaa": {
+          "games": "Games",
+          "props": "Props"
+        },
+        "sports": {
+          "nfl": "NFL",
+          "ncaaf": "NCAAF"
+        },
+        "politics": {
+          "trump": "Trump",
+          "congress": "Congress",
+          "iran": "Iran"
+        }
+      }
+    },
     "home_feed": {
       "trending": "인기",
       "sports": "스포츠",
       "games_error": "경기를 불러올 수 없습니다.",
-      "retry": "다시 시도"
+      "retry": "다시 시도",
+      "preview_error": "Markets couldn’t be loaded.",
+      "preview_empty": "No markets available.",
+      "open_section": "View {{title}}"
     },
     "get_started_banner": {
       "title": "몇 가지 간단한 단계로 시작하기",
@@ -4151,6 +4185,51 @@
     "order_notification": {
       "not_placed_title": "주문 접수 안 됨",
       "not_placed_description": "잔액은 차감되지 않았습니다. 최신 시세를 불러와 다시 시도하세요."
+    },
+    "deposit": {
+      "title": "Add Prediction funds",
+      "amount": "Deposit amount",
+      "pay_with": "Pay with",
+      "token_on_network": "{{token}} on {{network}}",
+      "available": "{{amount}} USDC available",
+      "balance_unavailable": "USDC balance unavailable",
+      "minimum": "Minimum $1",
+      "not_enough_usdc": "Not enough USDC on {{network}}",
+      "continue": "Continue",
+      "add_funds": "Add funds",
+      "plan_mismatch": "This deposit couldn't be verified, so nothing was sent. Try again.",
+      "rejected": "Transfer cancelled. No funds were moved.",
+      "failed": "Something went wrong. Your account wasn't funded.",
+      "transfer_mismatch": "The transfer doesn't match this deposit. Contact support.",
+      "processing_title": "Adding funds",
+      "processing_description": "{{amount}} will be available in about a minute.",
+      "done": "Done",
+      "in_progress": {
+        "title": "Deposit in progress",
+        "awaiting_transfer": "Your deposit of {{amount}} is waiting for its transfer.",
+        "processing": "Your deposit of {{amount}} is on its way. It'll be available in a moment.",
+        "under_review": "Your deposit of {{amount}} is under review. Support reference: {{reference}}",
+        "under_review_label": "Your deposit of {{amount}} is under review. Support reference:",
+        "unknown": "A deposit is already in progress. Try again in a moment.",
+        "continue": "Continue",
+        "cancel": "Cancel deposit",
+        "close": "Got it",
+        "cancel_failed": "This deposit couldn't be cancelled. Try again."
+      },
+      "status": {
+        "awaiting_transfer": "Deposit waiting for your transfer",
+        "processing": "Deposit processing",
+        "under_review": "Deposit under review · Ref {{reference}}",
+        "under_review_label": "Deposit under review · Ref",
+        "copy_reference": "Copy support reference",
+        "reference_copied": "Support reference copied",
+        "failed": "Deposit failed",
+        "cancelled": "Deposit cancelled"
+      },
+      "notification": {
+        "completed_title": "Deposit complete",
+        "completed_description": "{{amount}} is ready to trade."
+      }
     },
     "withdraw": {
       "title": "출금",
@@ -5379,6 +5458,12 @@
     "fully_diluted": "완전히 희석됨",
     "unknown": "알 수 없음",
     "stock": "재고"
+  },
+  "collectibles": {
+    "title": "Collectibles",
+    "trade_menu": {
+      "description": "Explore packs and cards"
+    }
   },
   "collectible": {
     "collectible_address": "주소",
@@ -9881,7 +9966,6 @@
     "apy_premium_tag": "Premium",
     "apy_upgrading_pill": "Upgrading to Premium APY",
     "apy_downgrading_pill": "Moving to standard APY",
-    "apy_info_label": "APY 정보",
     "balance_unavailable": "잔액을 확인할 수 없음",
     "balance_unavailable_value": "$—",
     "balance_unavailable_banner_description": "일시적으로 잔액을 표시할 수 없습니다. 자금은 안전하게 보관되고 있습니다. 잠시 후 다시 시도하세요.",
@@ -9906,6 +9990,7 @@
           "title": "MetaMask 카드 연결",
           "description": "Mastercard가 허용되는 모든 곳에서 수익이 쌓이는 동안 잔액을 사용하세요.",
           "cta_primary": "카드 연결",
+          "cta_log_in": "Log in",
           "cta_secondary": "건너뛰기"
         }
       }
@@ -9917,15 +10002,15 @@
       "body_suffix": "의 수익을 제공하는 스테이블코인 계정으로, 거래와 송금 및 결제 기능이 기본 내장되어 있습니다.",
       "body_no_apy": "MetaMask Money는 거래, 송금, 결제 기능이 기본 내장된 스테이블코인 계정입니다.",
       "benefit_convert_title": "MetaMask USD로 1:1 전환",
-      "benefit_convert_body": "입금한 자금은 수수료 없이 MetaMask USD로 1:1 전환됩니다.",
+      "benefit_convert_body": "Funds you add convert 1:1 to MetaMask USD, a dollar-backed stablecoin.",
       "benefit_earn_title": "자동으로 수익 얻기",
       "benefit_earn_body": "별도로 청구할 필요 없이 수익이 실시간으로 잔고에 반영됩니다.",
       "benefit_trade_title": "동일한 잔고로 바로 거래",
       "benefit_trade_body": "Money 잔고에서 바로 스왑, 무기한 선물, 예측 시장 거래 자금을 조달하세요.",
-      "benefit_withdraw_title": "언제든지 출금 가능",
-      "benefit_withdraw_body": "락업이나 사전 신청 기간, 위약금이 없습니다. 자금을 언제든 자유롭게 출금할 수 있습니다.",
+      "benefit_withdraw_title": "No lockups",
+      "benefit_withdraw_body": "There are no notice periods or penalties to swap or send your funds.",
       "benefit_send_title": "어디서나 송금 및 결제",
-      "benefit_send_body": "모든 지갑이나 은행으로 송금하거나 MetaMask Card로 결제하세요.",
+      "benefit_send_body": "Send to any wallet or bank, or spend globally with MetaMask Card.",
       "cta": "수익 창출 시작",
       "close": "닫기"
     },
@@ -9986,6 +10071,7 @@
     },
     "action": {
       "add": "추가",
+      "move": "Move",
       "card": "카드",
       "details": "세부 정보"
     },
@@ -10052,6 +10138,8 @@
       "virtual_card": "가상 카드",
       "metal_card": "메탈 카드",
       "link_title": "카드 연결",
+      "sign_in_cta": "Log in",
+      "sign_in_prompt": "Log in to view your balance, card, and transaction details.",
       "link_subtitle": "Mastercard가 허용되는 모든 곳에서 수익이 쌓이는 동안 잔액을 사용하세요.",
       "link_subtitle_no_apy": "Mastercard가 허용되는 모든 곳에서 수익이 쌓이는 동안 잔액을 사용하세요.",
       "link_bullet_apy": "최대 ~{{apy}}% APY 수익 얻기",
@@ -10107,6 +10195,8 @@
       "contact_support": "지원팀에 문의"
     },
     "transfer_sheet": {
+      "move_title": "Move funds",
+      "withdraw_to_accounts": "Withdraw to accounts",
       "perps_account": "무기한 선물 계정",
       "predictions_account": "예측 계정",
       "send_external": "외부 주소",
@@ -10171,15 +10261,32 @@
       "send_destination_predict": "예측"
     },
     "apy_tooltip": {
-      "title": "연간수익률(APY)",
+      "subtitle": "Annual Percentage Yield",
+      "lead": "This is the rate your MetaMask Money balance is earning right now.",
       "paragraph_1": "회원님의 Money Account는 자동으로 최대 {{percentage}}%의 수익을 올릴 수 있습니다.",
       "paragraph_1_premium": "Your Money account earns up to {{percentage}}% with MetaMask Pro Premium APY.",
       "migration_upgrading": "Your funds are moving to the Premium vault. The APY shown is for the vault your funds are in right now.",
       "migration_downgrading": "Your funds are moving to the standard vault. The APY shown is for the vault your funds are in right now.",
-      "paragraph_2": "표시된 수익률은 현재 시장 상황에 기반한 연간수익률(APY)입니다. APY는 변동될 수 있으며 보장되지 않습니다. 자금은 Veda가 운영하고 Steakhouse Financial이 위험을 관리하는 디파이 볼트에 예치되어 주요 대출 시장에서 수익을 창출합니다.",
+      "how_it_works_title": "How it works",
+      "how_it_works_body": "Earnings are added to your balance in real time and compound, so your earnings earn too.",
+      "why_it_changes_title": "Why it changes",
+      "why_it_changes_body": "APY is variable and isn't guaranteed. It moves up and down with borrowing demand.",
+      "where_it_comes_from_title": "Where it comes from",
+      "where_it_comes_from_body": "Your funds go into a DeFi vault that lends across established markets. Veda manages the vault, and Steakhouse Financial oversees its risk.",
       "paragraph_3": "MetaMask 카드를 연결하면 결제액이 이 잔액에서 차감됩니다.",
-      "paragraph_4": "Money Account는 Monad에서 제공합니다.",
-      "deposit_body": "표시된 수익률은 현재 시장 상황에 기반한 예상 연간수익률(APY)입니다. APY는 변동되며 보장되지 않습니다."
+      "paragraph_4": "Money Account는 Monad에서 제공합니다."
+    },
+    "estimated_balance_sheet": {
+      "title": "Your {{depositAmount}} could grow to {{projectedAmount}}",
+      "subtitle_prefix": "Estimated balance after one year in MetaMask Money at ",
+      "subtitle_apy": "{{percentage}}% APY",
+      "subtitle_suffix": ".",
+      "subtitle_no_apy": "Estimated balance after one year in MetaMask Money.",
+      "bullet_compound_title": "Earnings compound automatically",
+      "bullet_compound_body": "Earnings are added to your balance in real time, so they start earning too.",
+      "bullet_no_lockups_title": "No lockups",
+      "bullet_no_lockups_body": "There are no notice periods or penalties to swap or send your funds.",
+      "disclaimer": "This estimate assumes {{percentage}}% APY for a full year. APY is variable and isn't guaranteed."
     },
     "earnings_tooltip": {
       "monthly": {
@@ -10193,7 +10300,6 @@
     },
     "earn_crypto_info_sheet": {
       "title": "암호화폐로 수익 얻기",
-      "deposit_title": "1년 후 예상 잔액",
       "body": "예상 수익은 {{percentage}}%의 연이율(APY)이 1년 동안 유지되는 경우를 가정하여 계산됩니다. APY는 변동될 수 있으며 보장되지 않습니다. 수익은 보장되지 않습니다.",
       "go_to_money_account": "머니 계정으로 이동"
     },
@@ -10835,7 +10941,7 @@
       "buy_button": "암호화폐 구매",
       "buy_predict": "예측 기능을 사용하려면 지갑에 자금을 추가하세요.",
       "buy_perps": "무기한 선물을 사용하려면 지갑에 자금을 추가하세요.",
-      "projected_balance": "{{projectedYears}}년 후 예상 잔액:",
+      "projected_balance": "Est. {{projectedYears}}-year balance:",
       "earn_up_to_apy": "{{percentage}}% APY 수익 얻기"
     },
     "unlimited": "무제한",
@@ -10913,6 +11019,7 @@
       "try_again": "다시 시도",
       "today": "오늘"
     },
+    "money_name": "MetaMask USD",
     "limit": {
       "pair": "{{source}} → {{dest}}",
       "expiry": "Expires after: {{timeLeft}}",
@@ -11106,6 +11213,7 @@
       "failed": "실패",
       "filled": "체결됨",
       "skipped": "건너뜀",
+      "swap_issue_warning": "Some swaps were skipped or failed",
       "reason": "이유",
       "swap_details_title": "{{source}}을(를) {{dest}}(으)로 스왑함",
       "order_not_found": "주문을 찾을 수 없음",
@@ -11170,6 +11278,7 @@
     "slippage": "슬리피지",
     "slippage_info": "주문이 제출되고 확정되는 시점 사이에 가격이 변동되는 것을 '슬리피지'라고 합니다. 슬리피지가 여기 설정한 허용치를 초과하면 스왑이 자동으로 취소됩니다.",
     "network_fee": "네트워크 수수료",
+    "stablecoin_account": "Stablecoin account",
     "relayer_fee": "릴레이어 수수료",
     "gas_fees_sponsored": "MetaMask가 지불함",
     "included": "포함됨",
@@ -11218,6 +11327,7 @@
     "no_fees_with_orange": "No fees with Orange",
     "fee_disclaimer": "MetaMask 수수료 {{feePercentage}}%가 포함됩니다",
     "discount_badge_promo": "프로모션",
+    "discount_badge_free": "Free",
     "discount_badge_dao": "DAO",
     "no_mm_fee": "MM 수수료 없음",
     "token_suspicious": "의심됨",
@@ -12952,6 +13062,9 @@
       "title_claim": "혜택 수령하기",
       "action": "청구",
       "empty-list": "현재 보유한 혜택이 없습니다.",
+      "error_title": "Unable to load benefits",
+      "error_description": "We couldn't load your benefits. Try again.",
+      "retry_button": "Retry",
       "powered_by": "제공자:",
       "available_count": "{{count}}개 사용 가능"
     },
@@ -12984,6 +13097,9 @@
       "entered": "참가 완료",
       "participant_count": "#{{count}}",
       "opt_in_cta": "참여하기",
+      "opt_in_section_title": "Discover campaigns and benefits",
+      "opt_in_section_description": "Win prizes, claim perks, and discover more ways to earn!",
+      "opt_in_section_legal": "Turning this on will opt-in all accounts on your devices to Rewards campaigns and Benefits powered by theMiracle.",
       "create_username": "Create a username",
       "opt_in_sheet_title": "캠페인 참여",
       "geo_restriction_banner_title": "회원님의 지역에서 사용할 수 없습니다",
@@ -13865,6 +13981,7 @@
       "money_account": "Money Account",
       "renews_on": "갱신일",
       "ends_on": "Ends on",
+      "ended_on": "Ended on",
       "months_on_us_one": "{{count}}개월 무료",
       "months_on_us_other": "{{count}}개월 무료",
       "manage": "플랜 관리",

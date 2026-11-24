@@ -1556,7 +1556,7 @@
       "private_description": "Hồ sơ riêng tư không thể đăng bài. Hãy chuyển hồ sơ sang công khai để bắt đầu đăng bài."
     },
     "post_trade_share": {
-      "swap_in_progress": "Đang hoán đổi",
+      "trade_in_progress": "Trade in progress",
       "complete": "Hoán đổi hoàn tất",
       "failed": "Hoán đổi không thành công",
       "order_in_progress": "Lệnh đang được xử lý",
@@ -3960,11 +3960,45 @@
       "politics": "Chính trị",
       "sports": "Thể thao"
     },
+    "feed_screens": {
+      "titles": {
+        "sports-football-nfl": "Sports",
+        "sports-football-ncaa": "Sports",
+        "sports": "Sports",
+        "politics": "Politics"
+      },
+      "subtitles": {
+        "sports-football-nfl": "NFL",
+        "sports-football-ncaa": "NCAAF"
+      },
+      "tabs": {
+        "sports-football-nfl": {
+          "games": "Games",
+          "props": "Props"
+        },
+        "sports-football-ncaa": {
+          "games": "Games",
+          "props": "Props"
+        },
+        "sports": {
+          "nfl": "NFL",
+          "ncaaf": "NCAAF"
+        },
+        "politics": {
+          "trump": "Trump",
+          "congress": "Congress",
+          "iran": "Iran"
+        }
+      }
+    },
     "home_feed": {
       "trending": "Xu hướng",
       "sports": "Thể thao",
       "games_error": "Không thể tải các trận đấu.",
-      "retry": "Thử lại"
+      "retry": "Thử lại",
+      "preview_error": "Markets couldn’t be loaded.",
+      "preview_empty": "No markets available.",
+      "open_section": "View {{title}}"
     },
     "get_started_banner": {
       "title": "Bắt đầu chỉ với vài bước",
@@ -4151,6 +4185,51 @@
     "order_notification": {
       "not_placed_title": "Lệnh chưa được đặt",
       "not_placed_description": "Số dư của bạn chưa bị trừ. Hãy lấy báo giá mới để thử lại."
+    },
+    "deposit": {
+      "title": "Add Prediction funds",
+      "amount": "Deposit amount",
+      "pay_with": "Pay with",
+      "token_on_network": "{{token}} on {{network}}",
+      "available": "{{amount}} USDC available",
+      "balance_unavailable": "USDC balance unavailable",
+      "minimum": "Minimum $1",
+      "not_enough_usdc": "Not enough USDC on {{network}}",
+      "continue": "Continue",
+      "add_funds": "Add funds",
+      "plan_mismatch": "This deposit couldn't be verified, so nothing was sent. Try again.",
+      "rejected": "Transfer cancelled. No funds were moved.",
+      "failed": "Something went wrong. Your account wasn't funded.",
+      "transfer_mismatch": "The transfer doesn't match this deposit. Contact support.",
+      "processing_title": "Adding funds",
+      "processing_description": "{{amount}} will be available in about a minute.",
+      "done": "Done",
+      "in_progress": {
+        "title": "Deposit in progress",
+        "awaiting_transfer": "Your deposit of {{amount}} is waiting for its transfer.",
+        "processing": "Your deposit of {{amount}} is on its way. It'll be available in a moment.",
+        "under_review": "Your deposit of {{amount}} is under review. Support reference: {{reference}}",
+        "under_review_label": "Your deposit of {{amount}} is under review. Support reference:",
+        "unknown": "A deposit is already in progress. Try again in a moment.",
+        "continue": "Continue",
+        "cancel": "Cancel deposit",
+        "close": "Got it",
+        "cancel_failed": "This deposit couldn't be cancelled. Try again."
+      },
+      "status": {
+        "awaiting_transfer": "Deposit waiting for your transfer",
+        "processing": "Deposit processing",
+        "under_review": "Deposit under review · Ref {{reference}}",
+        "under_review_label": "Deposit under review · Ref",
+        "copy_reference": "Copy support reference",
+        "reference_copied": "Support reference copied",
+        "failed": "Deposit failed",
+        "cancelled": "Deposit cancelled"
+      },
+      "notification": {
+        "completed_title": "Deposit complete",
+        "completed_description": "{{amount}} is ready to trade."
+      }
     },
     "withdraw": {
       "title": "Rút tiền",
@@ -5379,6 +5458,12 @@
     "fully_diluted": "Pha loãng hoàn toàn",
     "unknown": "Không xác định",
     "stock": "Cổ phiếu"
+  },
+  "collectibles": {
+    "title": "Collectibles",
+    "trade_menu": {
+      "description": "Explore packs and cards"
+    }
   },
   "collectible": {
     "collectible_address": "Địa chỉ",
@@ -9881,7 +9966,6 @@
     "apy_premium_tag": "Premium",
     "apy_upgrading_pill": "Upgrading to Premium APY",
     "apy_downgrading_pill": "Moving to standard APY",
-    "apy_info_label": "Thông tin APY",
     "balance_unavailable": "Số dư không khả dụng",
     "balance_unavailable_value": "$—",
     "balance_unavailable_banner_description": "Chúng tôi tạm thời không thể hiển thị số dư của bạn. Tiền của bạn vẫn an toàn — hãy thử lại sau.",
@@ -9906,6 +9990,7 @@
           "title": "Liên kết Thẻ MetaMask của bạn",
           "description": "Chi tiêu số dư của bạn trong khi vẫn sinh lời, ở bất kỳ đâu chấp nhận Mastercard.",
           "cta_primary": "Liên kết thẻ",
+          "cta_log_in": "Log in",
           "cta_secondary": "Bỏ qua"
         }
       }
@@ -9917,15 +10002,15 @@
       "body_suffix": "— tích hợp sẵn tính năng giao dịch, gửi tiền và chi tiêu.",
       "body_no_apy": "MetaMask Tài chính là tài khoản đồng ổn định tích hợp sẵn tính năng giao dịch, gửi tiền và chi tiêu.",
       "benefit_convert_title": "Chuyển đổi sang MetaMask USD theo tỷ lệ 1:1",
-      "benefit_convert_body": "Số tiền bạn nạp được chuyển đổi sang MetaMask USD theo tỷ lệ 1:1, hoàn toàn miễn phí.",
+      "benefit_convert_body": "Funds you add convert 1:1 to MetaMask USD, a dollar-backed stablecoin.",
       "benefit_earn_title": "Tự động sinh lời",
       "benefit_earn_body": "Số tiền sinh lời sẽ được cộng vào số dư của bạn ngay lập tức mà không cần phải nhận thủ công.",
       "benefit_trade_title": "Giao dịch từ cùng một số dư",
       "benefit_trade_body": "Sử dụng trực tiếp số dư Money để thực hiện các giao dịch hoán đổi, hợp đồng vĩnh cửu và tham gia dự đoán.",
-      "benefit_withdraw_title": "Rút tiền bất cứ lúc nào",
-      "benefit_withdraw_body": "Tiền không bị khóa. Bạn không cần báo trước hay chịu phạt. Bạn luôn có thể rút tiền của mình.",
+      "benefit_withdraw_title": "No lockups",
+      "benefit_withdraw_body": "There are no notice periods or penalties to swap or send your funds.",
       "benefit_send_title": "Gửi tiền hoặc chi tiêu ở bất cứ đâu",
-      "benefit_send_body": "Gửi tiền đến bất kỳ ví hoặc ngân hàng nào, hoặc chi tiêu bằng MetaMask Card.",
+      "benefit_send_body": "Send to any wallet or bank, or spend globally with MetaMask Card.",
       "cta": "Bắt đầu kiếm tiền",
       "close": "Đóng"
     },
@@ -9986,6 +10071,7 @@
     },
     "action": {
       "add": "Thêm",
+      "move": "Move",
       "card": "Thẻ",
       "details": "Chi tiết"
     },
@@ -10052,6 +10138,8 @@
       "virtual_card": "Thẻ ảo",
       "metal_card": "Thẻ kim loại",
       "link_title": "Liên kết thẻ",
+      "sign_in_cta": "Log in",
+      "sign_in_prompt": "Log in to view your balance, card, and transaction details.",
       "link_subtitle": "Chi tiêu số dư của bạn trong khi vẫn sinh lời, ở bất kỳ đâu chấp nhận Mastercard.",
       "link_subtitle_no_apy": "Chi tiêu số dư của bạn trong khi vẫn sinh lời, ở bất kỳ đâu chấp nhận Mastercard.",
       "link_bullet_apy": "Sinh lời lên đến ~{{apy}}% APY",
@@ -10107,6 +10195,8 @@
       "contact_support": "Liên hệ bộ phận hỗ trợ"
     },
     "transfer_sheet": {
+      "move_title": "Move funds",
+      "withdraw_to_accounts": "Withdraw to accounts",
       "perps_account": "Tài khoản hợp đồng vĩnh cửu",
       "predictions_account": "Tài khoản dự đoán",
       "send_external": "Địa chỉ bên ngoài",
@@ -10171,15 +10261,32 @@
       "send_destination_predict": "Dự đoán"
     },
     "apy_tooltip": {
-      "title": "Lợi suất phần trăm hằng năm (APY)",
+      "subtitle": "Annual Percentage Yield",
+      "lead": "This is the rate your MetaMask Money balance is earning right now.",
       "paragraph_1": "Money Account của bạn tự động sinh lời lên đến {{percentage}}%.",
       "paragraph_1_premium": "Your Money account earns up to {{percentage}}% with MetaMask Pro Premium APY.",
       "migration_upgrading": "Your funds are moving to the Premium vault. The APY shown is for the vault your funds are in right now.",
       "migration_downgrading": "Your funds are moving to the standard vault. The APY shown is for the vault your funds are in right now.",
-      "paragraph_2": "Lãi suất hiển thị là Tỷ suất lợi nhuận hằng năm (APY) ước tính dựa trên điều kiện thị trường hiện tại. APY có thể thay đổi và không được đảm bảo. Tiền được đưa vào một kho DeFi do Veda quản lý, với sự giám sát rủi ro từ Steakhouse Financial, nhằm tạo lợi nhuận trên các thị trường cho vay đã được thiết lập.",
+      "how_it_works_title": "How it works",
+      "how_it_works_body": "Earnings are added to your balance in real time and compound, so your earnings earn too.",
+      "why_it_changes_title": "Why it changes",
+      "why_it_changes_body": "APY is variable and isn't guaranteed. It moves up and down with borrowing demand.",
+      "where_it_comes_from_title": "Where it comes from",
+      "where_it_comes_from_body": "Your funds go into a DeFi vault that lends across established markets. Veda manages the vault, and Steakhouse Financial oversees its risk.",
       "paragraph_3": "Khi bạn liên kết MetaMask Card, các giao dịch mua sẽ được khấu trừ từ số dư này.",
-      "paragraph_4": "Money Account được hỗ trợ bởi Monad.",
-      "deposit_body": "Tỷ suất hiển thị là Lợi suất phần trăm hằng năm (APY) ước tính dựa trên điều kiện thị trường hiện tại. APY có thể thay đổi và không được đảm bảo."
+      "paragraph_4": "Money Account được hỗ trợ bởi Monad."
+    },
+    "estimated_balance_sheet": {
+      "title": "Your {{depositAmount}} could grow to {{projectedAmount}}",
+      "subtitle_prefix": "Estimated balance after one year in MetaMask Money at ",
+      "subtitle_apy": "{{percentage}}% APY",
+      "subtitle_suffix": ".",
+      "subtitle_no_apy": "Estimated balance after one year in MetaMask Money.",
+      "bullet_compound_title": "Earnings compound automatically",
+      "bullet_compound_body": "Earnings are added to your balance in real time, so they start earning too.",
+      "bullet_no_lockups_title": "No lockups",
+      "bullet_no_lockups_body": "There are no notice periods or penalties to swap or send your funds.",
+      "disclaimer": "This estimate assumes {{percentage}}% APY for a full year. APY is variable and isn't guaranteed."
     },
     "earnings_tooltip": {
       "monthly": {
@@ -10193,7 +10300,6 @@
     },
     "earn_crypto_info_sheet": {
       "title": "Kiếm lợi nhuận từ tiền mã hóa của bạn",
-      "deposit_title": "Số dư dự kiến sau 1 năm",
       "body": "Ước tính này giả định rằng Lợi suất phần trăm hằng năm (APY) ở mức {{percentage}}% không thay đổi trong vòng một năm. APY có thể thay đổi và không được đảm bảo. Không có đảm bảo về lợi nhuận.",
       "go_to_money_account": "Đi đến Money Account"
     },
@@ -10835,7 +10941,7 @@
       "buy_button": "Mua tiền mã hóa",
       "buy_predict": "Nạp tiền vào ví của bạn để sử dụng Dự đoán.",
       "buy_perps": "Nạp tiền vào ví của bạn để sử dụng Hợp đồng vĩnh cửu.",
-      "projected_balance": "Số dư dự kiến sau {{projectedYears}} năm:",
+      "projected_balance": "Est. {{projectedYears}}-year balance:",
       "earn_up_to_apy": "Nhận {{percentage}}% APY"
     },
     "unlimited": "Không giới hạn",
@@ -10913,6 +11019,7 @@
       "try_again": "Thử lại",
       "today": "Hôm nay"
     },
+    "money_name": "MetaMask USD",
     "limit": {
       "pair": "{{source}} → {{dest}}",
       "expiry": "Expires after: {{timeLeft}}",
@@ -11106,6 +11213,7 @@
       "failed": "Không thành công",
       "filled": "Đã khớp",
       "skipped": "Đã bỏ qua",
+      "swap_issue_warning": "Some swaps were skipped or failed",
       "reason": "Lý do",
       "swap_details_title": "Đã hoán đổi {{source}} sang {{dest}}",
       "order_not_found": "Không tìm thấy lệnh",
@@ -11170,6 +11278,7 @@
     "slippage": "Trượt giá",
     "slippage_info": "Nếu giá thay đổi giữa thời điểm bạn đặt lệnh và xác nhận, điều đó gọi là “trượt giá”. Giao dịch hoán đổi của bạn sẽ tự động bị hủy nếu mức trượt giá vượt quá mức sai lệch bạn đã thiết lập ở đây.",
     "network_fee": "Phí mạng",
+    "stablecoin_account": "Stablecoin account",
     "relayer_fee": "Phí sàn chuyển tiếp",
     "gas_fees_sponsored": "Được thanh toán bởi MetaMask",
     "included": "Đã bao gồm",
@@ -11218,6 +11327,7 @@
     "no_fees_with_orange": "No fees with Orange",
     "fee_disclaimer": "Bao gồm {{feePercentage}}% phí của MetaMask",
     "discount_badge_promo": "Khuyến mãi",
+    "discount_badge_free": "Free",
     "discount_badge_dao": "DAO",
     "no_mm_fee": "Không có phí MM",
     "token_suspicious": "Đáng ngờ",
@@ -12952,6 +13062,9 @@
       "title_claim": "Nhận quyền lợi",
       "action": "Nhận",
       "empty-list": "Bạn hiện không có quyền lợi nào.",
+      "error_title": "Unable to load benefits",
+      "error_description": "We couldn't load your benefits. Try again.",
+      "retry_button": "Retry",
       "powered_by": "Được cung cấp bởi",
       "available_count": "Có sẵn {{count}}"
     },
@@ -12984,6 +13097,9 @@
       "entered": "Đã tham gia",
       "participant_count": "#{{count}}",
       "opt_in_cta": "Đồng ý tham gia",
+      "opt_in_section_title": "Discover campaigns and benefits",
+      "opt_in_section_description": "Win prizes, claim perks, and discover more ways to earn!",
+      "opt_in_section_legal": "Turning this on will opt-in all accounts on your devices to Rewards campaigns and Benefits powered by theMiracle.",
       "create_username": "Create a username",
       "opt_in_sheet_title": "Tham gia chiến dịch",
       "geo_restriction_banner_title": "Không khả dụng tại khu vực của bạn",
@@ -13865,6 +13981,7 @@
       "money_account": "Money Account",
       "renews_on": "Gia hạn vào",
       "ends_on": "Ends on",
+      "ended_on": "Ended on",
       "months_on_us_one": "Tặng {{count}} tháng",
       "months_on_us_other": "Tặng {{count}} tháng",
       "manage": "Quản lý gói",

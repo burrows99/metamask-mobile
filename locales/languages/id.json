@@ -1556,7 +1556,7 @@
       "private_description": "Profil pribadi tidak dapat memublikasikan postingan. Ubah profil Anda menjadi publik untuk mulai membuat postingan."
     },
     "post_trade_share": {
-      "swap_in_progress": "Swap sedang berlangsung",
+      "trade_in_progress": "Trade in progress",
       "complete": "Swap selesai",
       "failed": "Pertukaran gagal",
       "order_in_progress": "Order sedang berlangsung",
@@ -3960,11 +3960,45 @@
       "politics": "Politik",
       "sports": "Olahraga"
     },
+    "feed_screens": {
+      "titles": {
+        "sports-football-nfl": "Sports",
+        "sports-football-ncaa": "Sports",
+        "sports": "Sports",
+        "politics": "Politics"
+      },
+      "subtitles": {
+        "sports-football-nfl": "NFL",
+        "sports-football-ncaa": "NCAAF"
+      },
+      "tabs": {
+        "sports-football-nfl": {
+          "games": "Games",
+          "props": "Props"
+        },
+        "sports-football-ncaa": {
+          "games": "Games",
+          "props": "Props"
+        },
+        "sports": {
+          "nfl": "NFL",
+          "ncaaf": "NCAAF"
+        },
+        "politics": {
+          "trump": "Trump",
+          "congress": "Congress",
+          "iran": "Iran"
+        }
+      }
+    },
     "home_feed": {
       "trending": "Sedang tren",
       "sports": "Olahraga",
       "games_error": "Permainan tidak dapat dimuat.",
-      "retry": "Coba lagi"
+      "retry": "Coba lagi",
+      "preview_error": "Markets couldn’t be loaded.",
+      "preview_empty": "No markets available.",
+      "open_section": "View {{title}}"
     },
     "get_started_banner": {
       "title": "Mulai dalam beberapa langkah",
@@ -4151,6 +4185,51 @@
     "order_notification": {
       "not_placed_title": "Order belum dibuat",
       "not_placed_description": "Tidak ada dana yang terpotong dari saldo Anda. Dapatkan kuotasi baru untuk mencoba lagi."
+    },
+    "deposit": {
+      "title": "Add Prediction funds",
+      "amount": "Deposit amount",
+      "pay_with": "Pay with",
+      "token_on_network": "{{token}} on {{network}}",
+      "available": "{{amount}} USDC available",
+      "balance_unavailable": "USDC balance unavailable",
+      "minimum": "Minimum $1",
+      "not_enough_usdc": "Not enough USDC on {{network}}",
+      "continue": "Continue",
+      "add_funds": "Add funds",
+      "plan_mismatch": "This deposit couldn't be verified, so nothing was sent. Try again.",
+      "rejected": "Transfer cancelled. No funds were moved.",
+      "failed": "Something went wrong. Your account wasn't funded.",
+      "transfer_mismatch": "The transfer doesn't match this deposit. Contact support.",
+      "processing_title": "Adding funds",
+      "processing_description": "{{amount}} will be available in about a minute.",
+      "done": "Done",
+      "in_progress": {
+        "title": "Deposit in progress",
+        "awaiting_transfer": "Your deposit of {{amount}} is waiting for its transfer.",
+        "processing": "Your deposit of {{amount}} is on its way. It'll be available in a moment.",
+        "under_review": "Your deposit of {{amount}} is under review. Support reference: {{reference}}",
+        "under_review_label": "Your deposit of {{amount}} is under review. Support reference:",
+        "unknown": "A deposit is already in progress. Try again in a moment.",
+        "continue": "Continue",
+        "cancel": "Cancel deposit",
+        "close": "Got it",
+        "cancel_failed": "This deposit couldn't be cancelled. Try again."
+      },
+      "status": {
+        "awaiting_transfer": "Deposit waiting for your transfer",
+        "processing": "Deposit processing",
+        "under_review": "Deposit under review · Ref {{reference}}",
+        "under_review_label": "Deposit under review · Ref",
+        "copy_reference": "Copy support reference",
+        "reference_copied": "Support reference copied",
+        "failed": "Deposit failed",
+        "cancelled": "Deposit cancelled"
+      },
+      "notification": {
+        "completed_title": "Deposit complete",
+        "completed_description": "{{amount}} is ready to trade."
+      }
     },
     "withdraw": {
       "title": "Tarik",
@@ -5379,6 +5458,12 @@
     "fully_diluted": "Dicairkan sepenuhnya",
     "unknown": "Tidak dikenal",
     "stock": "Saham"
+  },
+  "collectibles": {
+    "title": "Collectibles",
+    "trade_menu": {
+      "description": "Explore packs and cards"
+    }
   },
   "collectible": {
     "collectible_address": "Alamat",
@@ -9881,7 +9966,6 @@
     "apy_premium_tag": "Premium",
     "apy_upgrading_pill": "Upgrading to Premium APY",
     "apy_downgrading_pill": "Moving to standard APY",
-    "apy_info_label": "Informasi APY",
     "balance_unavailable": "Saldo tidak tersedia",
     "balance_unavailable_value": "$—",
     "balance_unavailable_banner_description": "Saat ini kami tidak dapat menampilkan saldo Anda. Dana Anda aman—cobalah sebentar lagi.",
@@ -9906,6 +9990,7 @@
           "title": "Hubungkan Kartu MetaMask",
           "description": "Gunakan saldo Anda selagi masih menghasilkan, di mana pun Mastercard diterima.",
           "cta_primary": "Tautkan kartu",
+          "cta_log_in": "Log in",
           "cta_secondary": "Lewati"
         }
       }
@@ -9917,15 +10002,15 @@
       "body_suffix": "—dilengkapi dengan fitur untuk melakukan perdagangan, pengiriman, dan penggunaan.",
       "body_no_apy": "MetaMask Money merupakan akun stablecoin yang dilengkapi dengan fitur untuk melakukan perdagangan, pengiriman, dan penggunaan.",
       "benefit_convert_title": "Dikonversi ke MetaMask USD, 1:1",
-      "benefit_convert_body": "Dana yang Anda tambahkan dikonversi dengan rasio 1:1 ke MetaMask USD, tanpa biaya apa pun.",
+      "benefit_convert_body": "Funds you add convert 1:1 to MetaMask USD, a dollar-backed stablecoin.",
       "benefit_earn_title": "Dapatkan secara otomatis",
       "benefit_earn_body": "Keuntungan masuk ke saldo Anda secara real-time, tanpa klaim apa pun.",
       "benefit_trade_title": "Berdagang dari saldo yang sama",
       "benefit_trade_body": "Danai swap, perp, dan prediksi langsung dari saldo Money Anda.",
-      "benefit_withdraw_title": "Tarik setiap saat",
-      "benefit_withdraw_body": "Tidak ada penguncian, periode pemberitahuan, ataupun penalti. Uang Anda sepenuhnya milik Anda dan dapat ditarik setiap saat.",
+      "benefit_withdraw_title": "No lockups",
+      "benefit_withdraw_body": "There are no notice periods or penalties to swap or send your funds.",
       "benefit_send_title": "Kirim atau gunakan di mana pun",
-      "benefit_send_body": "Kirim ke dompet atau bank mana pun, atau gunakan dengan Kartu MetaMask.",
+      "benefit_send_body": "Send to any wallet or bank, or spend globally with MetaMask Card.",
       "cta": "Mulai menghasilkan",
       "close": "Tutup"
     },
@@ -9986,6 +10071,7 @@
     },
     "action": {
       "add": "Tambah",
+      "move": "Move",
       "card": "Kartu",
       "details": "Detail"
     },
@@ -10052,6 +10138,8 @@
       "virtual_card": "Kartu virtual",
       "metal_card": "Kartu logam",
       "link_title": "Tautkan kartu",
+      "sign_in_cta": "Log in",
+      "sign_in_prompt": "Log in to view your balance, card, and transaction details.",
       "link_subtitle": "Gunakan saldo Anda selagi masih menghasilkan, di mana pun Mastercard diterima.",
       "link_subtitle_no_apy": "Gunakan saldo Anda selagi masih menghasilkan, di mana pun Mastercard diterima.",
       "link_bullet_apy": "Dapatkan hingga ~{{apy}}% APY",
@@ -10107,6 +10195,8 @@
       "contact_support": "Hubungi dukungan"
     },
     "transfer_sheet": {
+      "move_title": "Move funds",
+      "withdraw_to_accounts": "Withdraw to accounts",
       "perps_account": "Akun perp",
       "predictions_account": "Akun Predictions",
       "send_external": "Alamat eksternal",
@@ -10171,15 +10261,32 @@
       "send_destination_predict": "Predict"
     },
     "apy_tooltip": {
-      "title": "Persentase Hasil Tahunan (APY)",
+      "subtitle": "Annual Percentage Yield",
+      "lead": "This is the rate your MetaMask Money balance is earning right now.",
       "paragraph_1": "Money Account menghasilkan hingga {{percentage}}% secara otomatis.",
       "paragraph_1_premium": "Your Money account earns up to {{percentage}}% with MetaMask Pro Premium APY.",
       "migration_upgrading": "Your funds are moving to the Premium vault. The APY shown is for the vault your funds are in right now.",
       "migration_downgrading": "Your funds are moving to the standard vault. The APY shown is for the vault your funds are in right now.",
-      "paragraph_2": "Nilai yang ditampilkan merupakan estimasi Persentase Hasil Tahunan (APY) berdasarkan kondisi pasar saat ini. APY bersifat variabel dan tidak dijamin. Dana masuk ke brankas DeFi, yang dikelola oleh Veda dengan pengawasan risiko oleh Steakhouse Financial, yang menghasilkan pengembalian di pasar pinjaman yang sudah mapan.",
+      "how_it_works_title": "How it works",
+      "how_it_works_body": "Earnings are added to your balance in real time and compound, so your earnings earn too.",
+      "why_it_changes_title": "Why it changes",
+      "why_it_changes_body": "APY is variable and isn't guaranteed. It moves up and down with borrowing demand.",
+      "where_it_comes_from_title": "Where it comes from",
+      "where_it_comes_from_body": "Your funds go into a DeFi vault that lends across established markets. Veda manages the vault, and Steakhouse Financial oversees its risk.",
       "paragraph_3": "Saat menautkan Kartu MetaMask, pembelian akan dipotong dari saldo ini.",
-      "paragraph_4": "Money Account didukung oleh Monad.",
-      "deposit_body": "Nilai yang ditampilkan merupakan estimasi Persentase Hasil Tahunan (APY) berdasarkan kondisi pasar saat ini. APY bersifat variabel dan tidak dijamin."
+      "paragraph_4": "Money Account didukung oleh Monad."
+    },
+    "estimated_balance_sheet": {
+      "title": "Your {{depositAmount}} could grow to {{projectedAmount}}",
+      "subtitle_prefix": "Estimated balance after one year in MetaMask Money at ",
+      "subtitle_apy": "{{percentage}}% APY",
+      "subtitle_suffix": ".",
+      "subtitle_no_apy": "Estimated balance after one year in MetaMask Money.",
+      "bullet_compound_title": "Earnings compound automatically",
+      "bullet_compound_body": "Earnings are added to your balance in real time, so they start earning too.",
+      "bullet_no_lockups_title": "No lockups",
+      "bullet_no_lockups_body": "There are no notice periods or penalties to swap or send your funds.",
+      "disclaimer": "This estimate assumes {{percentage}}% APY for a full year. APY is variable and isn't guaranteed."
     },
     "earnings_tooltip": {
       "monthly": {
@@ -10193,7 +10300,6 @@
     },
     "earn_crypto_info_sheet": {
       "title": "Raih pendapatan dari kripto",
-      "deposit_title": "Proyeksi saldo 1 tahun",
       "body": "Proyeksi ini mengasumsikan Persentase Hasil Tahunan (APY) sebesar {{percentage}}% tetap tidak berubah selama satu tahun. APY bersifat variabel dan tidak dijamin. Tidak ada jaminan pengembalian.",
       "go_to_money_account": "Buka Money account"
     },
@@ -10835,7 +10941,7 @@
       "buy_button": "Beli kripto",
       "buy_predict": "Tambahkan dana ke dompet Anda untuk menggunakan Prediksi.",
       "buy_perps": "Tambahkan dana ke dompet Anda untuk menggunakan Perp.",
-      "projected_balance": "Proyeksi saldo {{projectedYears}} tahun:",
+      "projected_balance": "Est. {{projectedYears}}-year balance:",
       "earn_up_to_apy": "Dapatkan APY {{percentage}}%"
     },
     "unlimited": "Tak terbatas",
@@ -10913,6 +11019,7 @@
       "try_again": "Coba lagi",
       "today": "Hari ini"
     },
+    "money_name": "MetaMask USD",
     "limit": {
       "pair": "{{source}} → {{dest}}",
       "expiry": "Expires after: {{timeLeft}}",
@@ -11106,6 +11213,7 @@
       "failed": "Gagal",
       "filled": "Terpenuhi",
       "skipped": "Dilewati",
+      "swap_issue_warning": "Some swaps were skipped or failed",
       "reason": "Alasan",
       "swap_details_title": "Menukar {{source}} menjadi {{dest}}",
       "order_not_found": "Order tidak ditemukan",
@@ -11170,6 +11278,7 @@
     "slippage": "Selip",
     "slippage_info": "Jika harga berubah antara waktu penempatan dan konfirmasi order Anda, ini disebut “selip”. Pertukaran akan otomatis dibatalkan jika selip melebihi toleransi yang Anda tetapkan di sini.",
     "network_fee": "Biaya jaringan",
+    "stablecoin_account": "Stablecoin account",
     "relayer_fee": "Biaya relayer",
     "gas_fees_sponsored": "Dibayar oleh MetaMask",
     "included": "Termasuk",
@@ -11218,6 +11327,7 @@
     "no_fees_with_orange": "No fees with Orange",
     "fee_disclaimer": "Termasuk biaya MetaMask sebesar {{feePercentage}}%",
     "discount_badge_promo": "Promo",
+    "discount_badge_free": "Free",
     "discount_badge_dao": "DAO",
     "no_mm_fee": "Tidak ada biaya MM",
     "token_suspicious": "Mencurigakan",
@@ -12952,6 +13062,9 @@
       "title_claim": "Klaim Manfaat",
       "action": "Klaim",
       "empty-list": "Saat ini Anda tidak memiliki manfaat apa pun.",
+      "error_title": "Unable to load benefits",
+      "error_description": "We couldn't load your benefits. Try again.",
+      "retry_button": "Retry",
       "powered_by": "Didukung oleh",
       "available_count": "{{count}} tersedia"
     },
@@ -12984,6 +13097,9 @@
       "entered": "Masuk",
       "participant_count": "#{{count}}",
       "opt_in_cta": "Ikut serta",
+      "opt_in_section_title": "Discover campaigns and benefits",
+      "opt_in_section_description": "Win prizes, claim perks, and discover more ways to earn!",
+      "opt_in_section_legal": "Turning this on will opt-in all accounts on your devices to Rewards campaigns and Benefits powered by theMiracle.",
       "create_username": "Create a username",
       "opt_in_sheet_title": "Gabung dalam kampanye ini",
       "geo_restriction_banner_title": "Tidak tersedia di wilayah Anda",
@@ -13865,6 +13981,7 @@
       "money_account": "Money Account",
       "renews_on": "Diperpanjang pada",
       "ends_on": "Ends on",
+      "ended_on": "Ended on",
       "months_on_us_one": "{{count}} bulan gratis dari kami",
       "months_on_us_other": "{{count}} bulan gratis dari kami",
       "manage": "Kelola paket",

@@ -1556,7 +1556,7 @@
       "private_description": "प्राइवेट प्रोफ़ाइल पोस्ट पब्लिश नहीं कर सकतीं। पोस्ट करना शुरू करने के लिए अपनी प्रोफ़ाइल पब्लिक करें।"
     },
     "post_trade_share": {
-      "swap_in_progress": "स्वैप प्रगति पर है",
+      "trade_in_progress": "Trade in progress",
       "complete": "स्वैप पूरा हुआ",
       "failed": "स्वैप नहीं हो पाया",
       "order_in_progress": "ऑर्डर प्रगति में है",
@@ -3960,11 +3960,45 @@
       "politics": "राजनीति",
       "sports": "स्पोर्ट्स"
     },
+    "feed_screens": {
+      "titles": {
+        "sports-football-nfl": "Sports",
+        "sports-football-ncaa": "Sports",
+        "sports": "Sports",
+        "politics": "Politics"
+      },
+      "subtitles": {
+        "sports-football-nfl": "NFL",
+        "sports-football-ncaa": "NCAAF"
+      },
+      "tabs": {
+        "sports-football-nfl": {
+          "games": "Games",
+          "props": "Props"
+        },
+        "sports-football-ncaa": {
+          "games": "Games",
+          "props": "Props"
+        },
+        "sports": {
+          "nfl": "NFL",
+          "ncaaf": "NCAAF"
+        },
+        "politics": {
+          "trump": "Trump",
+          "congress": "Congress",
+          "iran": "Iran"
+        }
+      }
+    },
     "home_feed": {
       "trending": "ट्रेंडिंग",
       "sports": "स्पोर्ट्स",
       "games_error": "गेम लोड नहीं हो सके।",
-      "retry": "फिर से प्रयास करें"
+      "retry": "फिर से प्रयास करें",
+      "preview_error": "Markets couldn’t be loaded.",
+      "preview_empty": "No markets available.",
+      "open_section": "View {{title}}"
     },
     "get_started_banner": {
       "title": "कुछ स्टेप्स में शुरू करें",
@@ -4151,6 +4185,51 @@
     "order_notification": {
       "not_placed_title": "ऑर्डर प्लेस नहीं किया गया",
       "not_placed_description": "आपकी बैलेंस राशि से कोई पैसा नहीं कटा। दोबारा कोशिश करने के लिए नई कोटेशन प्राप्त करें।"
+    },
+    "deposit": {
+      "title": "Add Prediction funds",
+      "amount": "Deposit amount",
+      "pay_with": "Pay with",
+      "token_on_network": "{{token}} on {{network}}",
+      "available": "{{amount}} USDC available",
+      "balance_unavailable": "USDC balance unavailable",
+      "minimum": "Minimum $1",
+      "not_enough_usdc": "Not enough USDC on {{network}}",
+      "continue": "Continue",
+      "add_funds": "Add funds",
+      "plan_mismatch": "This deposit couldn't be verified, so nothing was sent. Try again.",
+      "rejected": "Transfer cancelled. No funds were moved.",
+      "failed": "Something went wrong. Your account wasn't funded.",
+      "transfer_mismatch": "The transfer doesn't match this deposit. Contact support.",
+      "processing_title": "Adding funds",
+      "processing_description": "{{amount}} will be available in about a minute.",
+      "done": "Done",
+      "in_progress": {
+        "title": "Deposit in progress",
+        "awaiting_transfer": "Your deposit of {{amount}} is waiting for its transfer.",
+        "processing": "Your deposit of {{amount}} is on its way. It'll be available in a moment.",
+        "under_review": "Your deposit of {{amount}} is under review. Support reference: {{reference}}",
+        "under_review_label": "Your deposit of {{amount}} is under review. Support reference:",
+        "unknown": "A deposit is already in progress. Try again in a moment.",
+        "continue": "Continue",
+        "cancel": "Cancel deposit",
+        "close": "Got it",
+        "cancel_failed": "This deposit couldn't be cancelled. Try again."
+      },
+      "status": {
+        "awaiting_transfer": "Deposit waiting for your transfer",
+        "processing": "Deposit processing",
+        "under_review": "Deposit under review · Ref {{reference}}",
+        "under_review_label": "Deposit under review · Ref",
+        "copy_reference": "Copy support reference",
+        "reference_copied": "Support reference copied",
+        "failed": "Deposit failed",
+        "cancelled": "Deposit cancelled"
+      },
+      "notification": {
+        "completed_title": "Deposit complete",
+        "completed_description": "{{amount}} is ready to trade."
+      }
     },
     "withdraw": {
       "title": "निकालें",
@@ -5379,6 +5458,12 @@
     "fully_diluted": "पूरी तरह से डाइल्यूट किया हुआ",
     "unknown": "अज्ञात",
     "stock": "स्टॉक"
+  },
+  "collectibles": {
+    "title": "Collectibles",
+    "trade_menu": {
+      "description": "Explore packs and cards"
+    }
   },
   "collectible": {
     "collectible_address": "पता",
@@ -9881,7 +9966,6 @@
     "apy_premium_tag": "Premium",
     "apy_upgrading_pill": "Upgrading to Premium APY",
     "apy_downgrading_pill": "Moving to standard APY",
-    "apy_info_label": "एपीवाय की जानकारी",
     "balance_unavailable": "बैलेंस अनुपलब्ध है",
     "balance_unavailable_value": "$—",
     "balance_unavailable_banner_description": "हम अस्थायी रूप से आपका बैलेंस दिखाने में असमर्थ हैं। आपके फंड सुरक्षित हैं—कृपया थोड़ी देर बाद फिर से कोशिश करें।",
@@ -9906,6 +9990,7 @@
           "title": "अपना MetaMask कार्ड लिंक करें",
           "description": "अपना बैलेंस पाने के साथ उसे खर्च करें, जहां भी मास्टरकार्ड स्वीकार किया जाता हो।",
           "cta_primary": "कार्ड लिंक करें",
+          "cta_log_in": "Log in",
           "cta_secondary": "छोड़ें"
         }
       }
@@ -9917,15 +10002,15 @@
       "body_suffix": "—तक कमाता है।",
       "body_no_apy": "MetaMask Money एक स्टेबलकॉइन अकाउंट है जिसमें ट्रेडिंग, भेजने और खर्च करने की बिल्ट-इन सुविधा है।",
       "benefit_convert_title": "MetaMask USD, 1:1 में कन्वर्ट होता है",
-      "benefit_convert_body": "आप जो फ़ंड डालते हैं, वे बिना किसी फ़ीस के 1:1 MetaMask USD में कन्वर्ट होते हैं।",
+      "benefit_convert_body": "Funds you add convert 1:1 to MetaMask USD, a dollar-backed stablecoin.",
       "benefit_earn_title": "ऑटोमैटिकली कमाएं",
       "benefit_earn_body": "कमाई रियल टाइम में आपके बैलेंस में आ जाती है, और आपको कुछ भी क्लेम नहीं करना होता।",
       "benefit_trade_title": "उसी बैलेंस से ट्रेड करें",
       "benefit_trade_body": "फंड स्वैप, पर्प्स और प्रेडिक्शन सीधे आपके Money बैलेंस से।",
-      "benefit_withdraw_title": "कभी भी निकालें",
-      "benefit_withdraw_body": "कोई लॉकअप, नोटिस पीरियड या पेनल्टी नहीं। आपका पैसा हमेशा आपका होता है, आप इसे कभी भी निकाल सकते हैं।",
+      "benefit_withdraw_title": "No lockups",
+      "benefit_withdraw_body": "There are no notice periods or penalties to swap or send your funds.",
       "benefit_send_title": "कहीं भी भेजें या खर्च करें",
-      "benefit_send_body": "किसी भी वॉलेट या बैंक में भेजें, या MetaMask कार्ड से खर्च करें।",
+      "benefit_send_body": "Send to any wallet or bank, or spend globally with MetaMask Card.",
       "cta": "कमाना शुरू करें",
       "close": "बंद करें"
     },
@@ -9986,6 +10071,7 @@
     },
     "action": {
       "add": "जोड़ें",
+      "move": "Move",
       "card": "कार्ड",
       "details": "विवरण"
     },
@@ -10052,6 +10138,8 @@
       "virtual_card": "वर्चुअल कार्ड",
       "metal_card": "मेटल कार्ड",
       "link_title": "कार्ड लिंक करें",
+      "sign_in_cta": "Log in",
+      "sign_in_prompt": "Log in to view your balance, card, and transaction details.",
       "link_subtitle": "अपना बैलेंस पाने के साथ उसे खर्च करें, जहां भी मास्टरकार्ड स्वीकार किया जाता हो।",
       "link_subtitle_no_apy": "अपना बैलेंस पाने के साथ उसे खर्च करें, जहां भी मास्टरकार्ड स्वीकार किया जाता हो।",
       "link_bullet_apy": "~{{apy}}% APY तक कमाएं",
@@ -10107,6 +10195,8 @@
       "contact_support": "सपोर्ट टीम से कॉन्टेक्ट करें"
     },
     "transfer_sheet": {
+      "move_title": "Move funds",
+      "withdraw_to_accounts": "Withdraw to accounts",
       "perps_account": "पर्प्स अकाउंट",
       "predictions_account": "प्रेडिक्शंस अकाउंट",
       "send_external": "बाहरी पता",
@@ -10171,15 +10261,32 @@
       "send_destination_predict": "प्रेडिक्ट करें"
     },
     "apy_tooltip": {
-      "title": "वार्षिक प्रतिशत उपज (APY)",
+      "subtitle": "Annual Percentage Yield",
+      "lead": "This is the rate your MetaMask Money balance is earning right now.",
       "paragraph_1": "आपका Money Account अपने आप {{percentage}}% तक कमाता है।",
       "paragraph_1_premium": "Your Money account earns up to {{percentage}}% with MetaMask Pro Premium APY.",
       "migration_upgrading": "Your funds are moving to the Premium vault. The APY shown is for the vault your funds are in right now.",
       "migration_downgrading": "Your funds are moving to the standard vault. The APY shown is for the vault your funds are in right now.",
-      "paragraph_2": "दिखाया गया रेट एक अनुमानित वार्षिक प्रतिशत यील्ड (APY) है जो मौजूदा बाज़ार परिस्थितियों पर आधारित है। APY बदल सकता है और इसकी कोई गारंटी नहीं है। फंड DeFi वॉल्ट में जाते हैं, जिसे Veda द्वारा मैनेज किया जाता है और Steakhouse Financial जोखिम की निगरानी करता है, जो स्थापित लेंडिंग मार्केट्स से रिटर्न जनरेट करता है।",
+      "how_it_works_title": "How it works",
+      "how_it_works_body": "Earnings are added to your balance in real time and compound, so your earnings earn too.",
+      "why_it_changes_title": "Why it changes",
+      "why_it_changes_body": "APY is variable and isn't guaranteed. It moves up and down with borrowing demand.",
+      "where_it_comes_from_title": "Where it comes from",
+      "where_it_comes_from_body": "Your funds go into a DeFi vault that lends across established markets. Veda manages the vault, and Steakhouse Financial oversees its risk.",
       "paragraph_3": "जब आप अपना MetaMask कार्ड लिंक करते हैं, तो खरीदारी इसी बैलेंस से कटेगी।",
-      "paragraph_4": "Money Account Monad द्वारा संचालित है।",
-      "deposit_body": "दिखाया गया रेट मौजूदा मार्केट कंडीशन के आधार पर एक अनुमानित एनुअल परसेंटेज यील्ड (APY) है। APY वेरिएबल है और इसकी गारंटी नहीं है।"
+      "paragraph_4": "Money Account Monad द्वारा संचालित है।"
+    },
+    "estimated_balance_sheet": {
+      "title": "Your {{depositAmount}} could grow to {{projectedAmount}}",
+      "subtitle_prefix": "Estimated balance after one year in MetaMask Money at ",
+      "subtitle_apy": "{{percentage}}% APY",
+      "subtitle_suffix": ".",
+      "subtitle_no_apy": "Estimated balance after one year in MetaMask Money.",
+      "bullet_compound_title": "Earnings compound automatically",
+      "bullet_compound_body": "Earnings are added to your balance in real time, so they start earning too.",
+      "bullet_no_lockups_title": "No lockups",
+      "bullet_no_lockups_body": "There are no notice periods or penalties to swap or send your funds.",
+      "disclaimer": "This estimate assumes {{percentage}}% APY for a full year. APY is variable and isn't guaranteed."
     },
     "earnings_tooltip": {
       "monthly": {
@@ -10193,7 +10300,6 @@
     },
     "earn_crypto_info_sheet": {
       "title": "अपने क्रिप्टो पर कमाएं",
-      "deposit_title": "अनुमानित 1-वर्षीय बैलेंस",
       "body": "प्रोजेक्शन में माना गया है कि {{percentage}}% एनुअल परसेंटेज यील्ड (APY) एक वर्ष तक अपरिवर्तित रहती है। APY परिवर्तनशील है और इसकी गारंटी नहीं है। किसी भी रिटर्न की कोई गारंटी नहीं है।",
       "go_to_money_account": "Money अकाउंट पर जाएं"
     },
@@ -10835,7 +10941,7 @@
       "buy_button": "क्रिप्टो खरीदें",
       "buy_predict": "प्रेडिक्शंस का उपयोग करने के लिए अपने वॉलेट में फंड्स जोड़ें।",
       "buy_perps": "पर्प्स का उपयोग करने के लिए अपने वॉलेट में फंड्स जोड़ें।",
-      "projected_balance": "अनुमानित {{projectedYears}}-वर्षीय बैलेंस:",
+      "projected_balance": "Est. {{projectedYears}}-year balance:",
       "earn_up_to_apy": "{{percentage}}% APY कमाएं"
     },
     "unlimited": "असीमित",
@@ -10913,6 +11019,7 @@
       "try_again": "फिर से प्रयास करें",
       "today": "आज"
     },
+    "money_name": "MetaMask USD",
     "limit": {
       "pair": "{{source}} → {{dest}}",
       "expiry": "Expires after: {{timeLeft}}",
@@ -11106,6 +11213,7 @@
       "failed": "नहीं हो पाया",
       "filled": "भरा गया",
       "skipped": "स्किप किया गया",
+      "swap_issue_warning": "Some swaps were skipped or failed",
       "reason": "कारण",
       "swap_details_title": "{{source}} को {{dest}} से स्वैप किया गया",
       "order_not_found": "ऑर्डर नहीं मिला",
@@ -11170,6 +11278,7 @@
     "slippage": "स्लिपेज (slippage)",
     "slippage_info": "यदि आपके ऑर्डर लगाए जाने और पुष्टि किए जाने के बीच कीमत में बदलाव होता है तो इसे \"स्लिपेज (slippage)\" कहा जाता है। यदि स्लिपेज (slippage) आपके द्वारा यहां निर्धारित सहनशीलता से अधिक हो जाता है तो आपका स्वैप स्वचालित रूप से कैंसिल हो जाएगा।",
     "network_fee": "नेटवर्क फीस",
+    "stablecoin_account": "Stablecoin account",
     "relayer_fee": "रीलेयर (relayer) फीस",
     "gas_fees_sponsored": "MetaMask द्वारा भुगतान किया गया",
     "included": "शामिल किया गया",
@@ -11218,6 +11327,7 @@
     "no_fees_with_orange": "No fees with Orange",
     "fee_disclaimer": "इसमें {{feePercentage}}% MetaMask फीस शामिल है",
     "discount_badge_promo": "प्रोमो",
+    "discount_badge_free": "Free",
     "discount_badge_dao": "DAO",
     "no_mm_fee": "कोई MM फीस नहीं",
     "token_suspicious": "संदिग्ध",
@@ -12952,6 +13062,9 @@
       "title_claim": "फ़ायदे क्लेम करें",
       "action": "क्लेम करें",
       "empty-list": "अभी आपको कोई फ़ायदा नहीं मिल रहा है।",
+      "error_title": "Unable to load benefits",
+      "error_description": "We couldn't load your benefits. Try again.",
+      "retry_button": "Retry",
       "powered_by": "के द्वारा पावर्ड",
       "available_count": "{{count}} उपलब्ध है"
     },
@@ -12984,6 +13097,9 @@
       "entered": "एंटर किया",
       "participant_count": "#{{count}}",
       "opt_in_cta": "ऑप्ट इन करें",
+      "opt_in_section_title": "Discover campaigns and benefits",
+      "opt_in_section_description": "Win prizes, claim perks, and discover more ways to earn!",
+      "opt_in_section_legal": "Turning this on will opt-in all accounts on your devices to Rewards campaigns and Benefits powered by theMiracle.",
       "create_username": "Create a username",
       "opt_in_sheet_title": "कैंपेन जॉइन करें",
       "geo_restriction_banner_title": "आपके इलाके में उपलब्ध नहीं है",
@@ -13865,6 +13981,7 @@
       "money_account": "Money Account",
       "renews_on": "को रीन्यू होता है",
       "ends_on": "Ends on",
+      "ended_on": "Ended on",
       "months_on_us_one": "{{count}} महीना हमारी ओर से",
       "months_on_us_other": "{{count}} महीने हमारी ओर से",
       "manage": "प्लान को प्रबंधित करें",

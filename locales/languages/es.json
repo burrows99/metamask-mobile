@@ -1556,7 +1556,7 @@
       "private_description": "Los perfiles privados no pueden publicar. Haz público tu perfil para empezar a publicar."
     },
     "post_trade_share": {
-      "swap_in_progress": "Canje en curso",
+      "trade_in_progress": "Trade in progress",
       "complete": "Canje finalizado",
       "failed": "Error al canjear",
       "order_in_progress": "Orden en curso",
@@ -3960,11 +3960,45 @@
       "politics": "Política",
       "sports": "Deportes"
     },
+    "feed_screens": {
+      "titles": {
+        "sports-football-nfl": "Sports",
+        "sports-football-ncaa": "Sports",
+        "sports": "Sports",
+        "politics": "Politics"
+      },
+      "subtitles": {
+        "sports-football-nfl": "NFL",
+        "sports-football-ncaa": "NCAAF"
+      },
+      "tabs": {
+        "sports-football-nfl": {
+          "games": "Games",
+          "props": "Props"
+        },
+        "sports-football-ncaa": {
+          "games": "Games",
+          "props": "Props"
+        },
+        "sports": {
+          "nfl": "NFL",
+          "ncaaf": "NCAAF"
+        },
+        "politics": {
+          "trump": "Trump",
+          "congress": "Congress",
+          "iran": "Iran"
+        }
+      }
+    },
     "home_feed": {
       "trending": "Tendencias",
       "sports": "Deportes",
       "games_error": "No se pudieron cargar los juegos.",
-      "retry": "Reintentar"
+      "retry": "Reintentar",
+      "preview_error": "Markets couldn’t be loaded.",
+      "preview_empty": "No markets available.",
+      "open_section": "View {{title}}"
     },
     "get_started_banner": {
       "title": "Comienza en unos pocos pasos",
@@ -4151,6 +4185,51 @@
     "order_notification": {
       "not_placed_title": "Orden no colocada",
       "not_placed_description": "No salió nada de tu saldo. Obtén una nueva cotización para intentarlo nuevamente."
+    },
+    "deposit": {
+      "title": "Add Prediction funds",
+      "amount": "Deposit amount",
+      "pay_with": "Pay with",
+      "token_on_network": "{{token}} on {{network}}",
+      "available": "{{amount}} USDC available",
+      "balance_unavailable": "USDC balance unavailable",
+      "minimum": "Minimum $1",
+      "not_enough_usdc": "Not enough USDC on {{network}}",
+      "continue": "Continue",
+      "add_funds": "Add funds",
+      "plan_mismatch": "This deposit couldn't be verified, so nothing was sent. Try again.",
+      "rejected": "Transfer cancelled. No funds were moved.",
+      "failed": "Something went wrong. Your account wasn't funded.",
+      "transfer_mismatch": "The transfer doesn't match this deposit. Contact support.",
+      "processing_title": "Adding funds",
+      "processing_description": "{{amount}} will be available in about a minute.",
+      "done": "Done",
+      "in_progress": {
+        "title": "Deposit in progress",
+        "awaiting_transfer": "Your deposit of {{amount}} is waiting for its transfer.",
+        "processing": "Your deposit of {{amount}} is on its way. It'll be available in a moment.",
+        "under_review": "Your deposit of {{amount}} is under review. Support reference: {{reference}}",
+        "under_review_label": "Your deposit of {{amount}} is under review. Support reference:",
+        "unknown": "A deposit is already in progress. Try again in a moment.",
+        "continue": "Continue",
+        "cancel": "Cancel deposit",
+        "close": "Got it",
+        "cancel_failed": "This deposit couldn't be cancelled. Try again."
+      },
+      "status": {
+        "awaiting_transfer": "Deposit waiting for your transfer",
+        "processing": "Deposit processing",
+        "under_review": "Deposit under review · Ref {{reference}}",
+        "under_review_label": "Deposit under review · Ref",
+        "copy_reference": "Copy support reference",
+        "reference_copied": "Support reference copied",
+        "failed": "Deposit failed",
+        "cancelled": "Deposit cancelled"
+      },
+      "notification": {
+        "completed_title": "Deposit complete",
+        "completed_description": "{{amount}} is ready to trade."
+      }
     },
     "withdraw": {
       "title": "Retirar",
@@ -5379,6 +5458,12 @@
     "fully_diluted": "Totalmente diluido",
     "unknown": "Desconocida",
     "stock": "Acción"
+  },
+  "collectibles": {
+    "title": "Collectibles",
+    "trade_menu": {
+      "description": "Explore packs and cards"
+    }
   },
   "collectible": {
     "collectible_address": "Dirección",
@@ -9881,7 +9966,6 @@
     "apy_premium_tag": "Premium",
     "apy_upgrading_pill": "Upgrading to Premium APY",
     "apy_downgrading_pill": "Moving to standard APY",
-    "apy_info_label": "Información de APY",
     "balance_unavailable": "Saldo no disponible",
     "balance_unavailable_value": "$—",
     "balance_unavailable_banner_description": "No podemos mostrar tu saldo temporalmente. Tus fondos están a salvo; vuelve a intentarlo en breve.",
@@ -9906,6 +9990,7 @@
           "title": "Vincula tu tarjeta MetaMask",
           "description": "Gasta tu saldo mientras genera ganancias, en cualquier lugar donde se acepte Mastercard.",
           "cta_primary": "Vincular tarjeta",
+          "cta_log_in": "Log in",
           "cta_secondary": "Omitir"
         }
       }
@@ -9917,15 +10002,15 @@
       "body_suffix": ", con funciones integradas para operar, enviar y gastar.",
       "body_no_apy": "MetaMask Money es una cuenta de monedas estables con funciones integradas para operar, enviar y gastar.",
       "benefit_convert_title": "Se convierte a MetaMask USD, 1:1",
-      "benefit_convert_body": "Los fondos que agregues se convierten a MetaMask USD en una proporción de 1:1, sin comisiones.",
+      "benefit_convert_body": "Funds you add convert 1:1 to MetaMask USD, a dollar-backed stablecoin.",
       "benefit_earn_title": "Gana automáticamente",
       "benefit_earn_body": "Las ganancias se depositan en tu saldo en tiempo real, sin necesidad de solicitarlas.",
       "benefit_trade_title": "Opera desde el mismo saldo",
       "benefit_trade_body": "Usa directamente tu saldo de Money Account para financiar canjes, contratos perpetuos y predicciones.",
-      "benefit_withdraw_title": "Retira fondos en cualquier momento",
-      "benefit_withdraw_body": "Sin bloqueos, plazos de preaviso ni penalizaciones. Tu dinero siempre estará disponible para retirarlo.",
+      "benefit_withdraw_title": "No lockups",
+      "benefit_withdraw_body": "There are no notice periods or penalties to swap or send your funds.",
       "benefit_send_title": "Envía o gasta en cualquier lugar",
-      "benefit_send_body": "Envía fondos a cualquier billetera o cuenta bancaria, o gástalos con la tarjeta MetaMask.",
+      "benefit_send_body": "Send to any wallet or bank, or spend globally with MetaMask Card.",
       "cta": "Comienza a ganar",
       "close": "Cerrar"
     },
@@ -9986,6 +10071,7 @@
     },
     "action": {
       "add": "Agregar",
+      "move": "Move",
       "card": "Tarjeta",
       "details": "Detalles"
     },
@@ -10052,6 +10138,8 @@
       "virtual_card": "Tarjeta Virtual",
       "metal_card": "Tarjeta Metal",
       "link_title": "Vincular tarjeta",
+      "sign_in_cta": "Log in",
+      "sign_in_prompt": "Log in to view your balance, card, and transaction details.",
       "link_subtitle": "Gasta tu saldo mientras genera ganancias, en cualquier lugar donde se acepte Mastercard.",
       "link_subtitle_no_apy": "Gasta tu saldo mientras genera ganancias, en cualquier lugar donde se acepte Mastercard.",
       "link_bullet_apy": "Gana hasta ~{{apy}} % de APY",
@@ -10107,6 +10195,8 @@
       "contact_support": "Contactar a soporte"
     },
     "transfer_sheet": {
+      "move_title": "Move funds",
+      "withdraw_to_accounts": "Withdraw to accounts",
       "perps_account": "Cuenta de Perps",
       "predictions_account": "Cuenta de Predicciones",
       "send_external": "Dirección externa",
@@ -10171,15 +10261,32 @@
       "send_destination_predict": "Predecir"
     },
     "apy_tooltip": {
-      "title": "Rendimiento porcentual anual (APY)",
+      "subtitle": "Annual Percentage Yield",
+      "lead": "This is the rate your MetaMask Money balance is earning right now.",
       "paragraph_1": "Tu Money Account gana hasta {{percentage}} % automáticamente.",
       "paragraph_1_premium": "Your Money account earns up to {{percentage}}% with MetaMask Pro Premium APY.",
       "migration_upgrading": "Your funds are moving to the Premium vault. The APY shown is for the vault your funds are in right now.",
       "migration_downgrading": "Your funds are moving to the standard vault. The APY shown is for the vault your funds are in right now.",
-      "paragraph_2": "La tasa mostrada es un rendimiento porcentual anual (APY) estimado basado en las condiciones actuales del mercado. El APY es variable y no está garantizado. Los fondos se depositan en una bóveda DeFi, administrada por Veda con supervisión de riesgos a cargo de Steakhouse Financial, que genera rendimientos en mercados de préstamos establecidos.",
+      "how_it_works_title": "How it works",
+      "how_it_works_body": "Earnings are added to your balance in real time and compound, so your earnings earn too.",
+      "why_it_changes_title": "Why it changes",
+      "why_it_changes_body": "APY is variable and isn't guaranteed. It moves up and down with borrowing demand.",
+      "where_it_comes_from_title": "Where it comes from",
+      "where_it_comes_from_body": "Your funds go into a DeFi vault that lends across established markets. Veda manages the vault, and Steakhouse Financial oversees its risk.",
       "paragraph_3": "Cuando vincules tu tarjeta MetaMask, las compras se descontarán de este saldo.",
-      "paragraph_4": "Money Account cuenta con la tecnología de Monad.",
-      "deposit_body": "La tasa mostrada es un rendimiento porcentual anual (APY) estimado basado en las condiciones actuales del mercado. El APY es variable y no está garantizado."
+      "paragraph_4": "Money Account cuenta con la tecnología de Monad."
+    },
+    "estimated_balance_sheet": {
+      "title": "Your {{depositAmount}} could grow to {{projectedAmount}}",
+      "subtitle_prefix": "Estimated balance after one year in MetaMask Money at ",
+      "subtitle_apy": "{{percentage}}% APY",
+      "subtitle_suffix": ".",
+      "subtitle_no_apy": "Estimated balance after one year in MetaMask Money.",
+      "bullet_compound_title": "Earnings compound automatically",
+      "bullet_compound_body": "Earnings are added to your balance in real time, so they start earning too.",
+      "bullet_no_lockups_title": "No lockups",
+      "bullet_no_lockups_body": "There are no notice periods or penalties to swap or send your funds.",
+      "disclaimer": "This estimate assumes {{percentage}}% APY for a full year. APY is variable and isn't guaranteed."
     },
     "earnings_tooltip": {
       "monthly": {
@@ -10193,7 +10300,6 @@
     },
     "earn_crypto_info_sheet": {
       "title": "Gana con tus criptomonedas",
-      "deposit_title": "Saldo proyectado a 1 años",
       "body": "La proyección asume que el {{percentage}} % de rendimiento porcentual anual (APY) se mantiene sin cambios durante un año. El APY es variable y no está garantizado. No hay garantía de rendimiento.",
       "go_to_money_account": "Ir a Money Account"
     },
@@ -10835,7 +10941,7 @@
       "buy_button": "Comprar criptomonedas",
       "buy_predict": "Añade fondos a tu billetera para utilizar Predicciones.",
       "buy_perps": "Añade fondos a tu billetera para usar Perps.",
-      "projected_balance": "Saldo proyectado a {{projectedYears}} años:",
+      "projected_balance": "Est. {{projectedYears}}-year balance:",
       "earn_up_to_apy": "Gana un {{percentage}} % de APY"
     },
     "unlimited": "Ilimitado",
@@ -10913,6 +11019,7 @@
       "try_again": "Inténtalo de nuevo",
       "today": "Hoy"
     },
+    "money_name": "MetaMask USD",
     "limit": {
       "pair": "{{source}} → {{dest}}",
       "expiry": "Expires after: {{timeLeft}}",
@@ -11106,6 +11213,7 @@
       "failed": "Fallido",
       "filled": "Completado",
       "skipped": "Omitido",
+      "swap_issue_warning": "Some swaps were skipped or failed",
       "reason": "Motivo",
       "swap_details_title": "Se canjeó {{source}} a {{dest}}",
       "order_not_found": "No se encontró la orden",
@@ -11170,6 +11278,7 @@
     "slippage": "Deslizamiento",
     "slippage_info": "Si el precio cambia entre el momento en que se coloca la orden y cuando se confirma, se denomina \"deslizamiento\". Su intercambio se cancelará automáticamente si el deslizamiento supera la tolerancia que establezca aquí.",
     "network_fee": "Tarifa de red",
+    "stablecoin_account": "Stablecoin account",
     "relayer_fee": "Tarifa de retransmisión",
     "gas_fees_sponsored": "Pagado por MetaMask",
     "included": "Incluida",
@@ -11218,6 +11327,7 @@
     "no_fees_with_orange": "No fees with Orange",
     "fee_disclaimer": "Incluye {{feePercentage}} % de la tarifa de MetaMask",
     "discount_badge_promo": "Promoción",
+    "discount_badge_free": "Free",
     "discount_badge_dao": "DAO",
     "no_mm_fee": "Sin tarifa de MM",
     "token_suspicious": "Sospechoso",
@@ -12952,6 +13062,9 @@
       "title_claim": "Reclamar beneficio",
       "action": "Reclamar",
       "empty-list": "No tienes ningún beneficio en este momento.",
+      "error_title": "Unable to load benefits",
+      "error_description": "We couldn't load your benefits. Try again.",
+      "retry_button": "Retry",
       "powered_by": "Impulsado por",
       "available_count": "{{count}} disponible(s)"
     },
@@ -12984,6 +13097,9 @@
       "entered": "Ya participas",
       "participant_count": "#{{count}}",
       "opt_in_cta": "Participar",
+      "opt_in_section_title": "Discover campaigns and benefits",
+      "opt_in_section_description": "Win prizes, claim perks, and discover more ways to earn!",
+      "opt_in_section_legal": "Turning this on will opt-in all accounts on your devices to Rewards campaigns and Benefits powered by theMiracle.",
       "create_username": "Create a username",
       "opt_in_sheet_title": "Únete a la campaña",
       "geo_restriction_banner_title": "No está disponible en tu región",
@@ -13865,6 +13981,7 @@
       "money_account": "Money Account",
       "renews_on": "Se renueva el",
       "ends_on": "Ends on",
+      "ended_on": "Ended on",
       "months_on_us_one": "{{count}} mes por nuestra cuenta",
       "months_on_us_other": "{{count}} meses por nuestra cuenta",
       "manage": "Administrar plan",
