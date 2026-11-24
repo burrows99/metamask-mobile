@@ -4813,7 +4813,7 @@
   },
   "app/components/UI/Earn/utils/musdConversionTransaction.test.ts": {
     "typescript/no-unnecessary-type-assertion": {
-      "count": 12
+      "count": 10
     }
   },
   "app/components/UI/Earn/utils/tempLending.test.ts": {
@@ -9221,11 +9221,6 @@
   "app/components/UI/Predict/views/PredictBuyWithAnyToken/components/PredictPayWithAnyTokenInfo/PredictPayWithAnyTokenInfo.tsx": {
     "typescript/no-floating-promises": {
       "count": 1
-    }
-  },
-  "app/components/UI/Predict/views/PredictBuyWithAnyToken/components/PredictPayWithRow/PredictPayWithRow.tsx": {
-    "typescript/no-unnecessary-type-assertion": {
-      "count": 2
     }
   },
   "app/components/UI/Predict/views/PredictBuyWithAnyToken/components/PredictQuickAmounts/PredictQuickAmounts.tsx": {
@@ -19165,11 +19160,6 @@
       "count": 1
     }
   },
-  "app/components/Views/confirmations/components/rows/bridge-time-row/bridge-time-row.test.tsx": {
-    "typescript/no-unnecessary-type-assertion": {
-      "count": 2
-    }
-  },
   "app/components/Views/confirmations/components/rows/pay-with-row/pay-with-row.test.tsx": {
     "typescript/await-thenable": {
       "count": 5
@@ -19649,7 +19639,7 @@
   },
   "app/components/Views/confirmations/hooks/pay/sections/usePayWithCryptoSection.test.tsx": {
     "typescript/no-unnecessary-type-assertion": {
-      "count": 7
+      "count": 5
     }
   },
   "app/components/Views/confirmations/hooks/pay/sections/usePayWithCryptoSection.ts": {
@@ -19705,7 +19695,7 @@
   },
   "app/components/Views/confirmations/hooks/pay/useDismissOnPaymentChange.test.ts": {
     "typescript/no-unnecessary-type-assertion": {
-      "count": 5
+      "count": 1
     }
   },
   "app/components/Views/confirmations/hooks/pay/useFiatConfirm.test.ts": {
@@ -19743,11 +19733,6 @@
       "count": 1
     }
   },
-  "app/components/Views/confirmations/hooks/pay/useMoneyNoFeeTokens.test.ts": {
-    "typescript/no-unnecessary-type-assertion": {
-      "count": 2
-    }
-  },
   "app/components/Views/confirmations/hooks/pay/usePaySectionRecipientMetrics.test.ts": {
     "typescript/no-unnecessary-type-assertion": {
       "count": 1
@@ -19760,25 +19745,10 @@
   },
   "app/components/Views/confirmations/hooks/pay/usePayTokenAccountBalance.test.ts": {
     "typescript/no-unnecessary-type-assertion": {
-      "count": 6
-    }
-  },
-  "app/components/Views/confirmations/hooks/pay/usePayTokenAccountBalance.ts": {
-    "typescript/no-unnecessary-type-assertion": {
-      "count": 2
-    }
-  },
-  "app/components/Views/confirmations/hooks/pay/usePayWithNoFeeToken.test.ts": {
-    "typescript/no-unnecessary-type-assertion": {
-      "count": 2
-    }
-  },
-  "app/components/Views/confirmations/hooks/pay/usePayWithPreferredToken.test.ts": {
-    "typescript/no-unnecessary-type-assertion": {
       "count": 4
     }
   },
-  "app/components/Views/confirmations/hooks/pay/usePayWithSelectedToken.test.ts": {
+  "app/components/Views/confirmations/hooks/pay/usePayWithNoFeeToken.test.ts": {
     "typescript/no-unnecessary-type-assertion": {
       "count": 2
     }
@@ -19801,11 +19771,6 @@
   "app/components/Views/confirmations/hooks/pay/useTransactionPayMetrics.test.ts": {
     "typescript/no-unnecessary-type-assertion": {
       "count": 2
-    }
-  },
-  "app/components/Views/confirmations/hooks/pay/useTransactionPayToken.test.ts": {
-    "typescript/no-unnecessary-type-assertion": {
-      "count": 9
     }
   },
   "app/components/Views/confirmations/hooks/pay/useTransactionPayToken.ts": {
@@ -24277,11 +24242,6 @@
   "app/util/bridge/hooks/useSubmitBridgeTx.test.tsx": {
     "typescript/no-unnecessary-type-assertion": {
       "count": 9
-    }
-  },
-  "app/util/bridge/hooks/useSubmitBridgeTx.ts": {
-    "typescript/no-unnecessary-type-assertion": {
-      "count": 1
     }
   },
   "app/util/browser/downloadFile.ts": {
