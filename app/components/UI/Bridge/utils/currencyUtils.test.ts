@@ -4,7 +4,6 @@ import {
   formatCurrency,
   formatMinimumReceived,
   getFiatPriceDecimals,
-  getMoneyInputPrefix,
 } from './currencyUtils';
 
 jest.mock('../../../../../locales/i18n', () => ({

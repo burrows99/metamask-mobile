@@ -21832,11 +21832,6 @@
       "count": 3
     }
   },
-  "app/core/Engine/controllers/transaction-controller/event-handlers/money-account-override.test.ts": {
-    "typescript/no-unnecessary-type-assertion": {
-      "count": 11
-    }
-  },
   "app/core/Engine/controllers/transaction-controller/event-handlers/money-account-override.ts": {
     "typescript/no-unnecessary-type-assertion": {
       "count": 1
